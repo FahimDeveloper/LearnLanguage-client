@@ -3,7 +3,7 @@ import { FaUsers } from "react-icons/fa";
 const PopulerCourse = ({ courses }) => {
     return (
         <div className='container mx-auto py-16 space-y-10'>
-            <h2 className='text-center text-5xl font-bold uppercase italic'>Populer Courses</h2>
+            <h2 className='titleStyle'>Populer Courses</h2>
             <div className='grid grid-cols-3 gap-5'>
                 {
                     courses.slice(0, 6).map(course => {

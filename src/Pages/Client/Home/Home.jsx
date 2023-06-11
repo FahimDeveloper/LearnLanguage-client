@@ -8,11 +8,11 @@ const Home = () => {
     const [instructor, setInstructor] = useState([])
     const [courses, setCourses] = useState([])
     useEffect(() => {
-        axios('http://localhost:5000/users')
+        axios('http://localhost:5000/topInstructors')
             .then(data => {
                 setInstructor(data.data)
             });
-        axios('http://localhost:5000/courses')
+        axios('http://localhost:5000/topCourses')
             .then(data => {
                 setCourses(data.data)
             });

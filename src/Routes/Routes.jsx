@@ -10,8 +10,14 @@ export const router = createBrowserRouter([
         path: '/', element: <App />,
         children: [
             { path: "/", element: <Home /> },
-            { path: "/instructors", element: <Instructors /> },
-            { path: "/allClasses", element: <Clasess /> },
+            {
+                path: "/instructors", element: <Instructors />,
+                loader: () => fetch('http://localhost:5000/instructors')
+            },
+            {
+                path: "/allClasses", element: <Clasess />,
+                loader: () => fetch('http://localhost:5000/courses')
+            },
         ]
     }
 ])

@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.titleStyle {
+    @apply text-center text-5xl font-bold uppercase italic
+}
