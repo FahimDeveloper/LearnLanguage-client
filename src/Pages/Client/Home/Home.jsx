@@ -5,12 +5,12 @@ import PopulerCourse from './Components/PopulerCourse/PopulerCourse';
 import PopulerInstructor from './Components/PopulerInstructor/PopulerInstructor';
 
 const Home = () => {
-    const [instructor, setInstructor] = useState([])
+    const [instructors, setInstructors] = useState([])
     const [courses, setCourses] = useState([])
     useEffect(() => {
         axios('http://localhost:5000/topInstructors')
             .then(data => {
-                setInstructor(data.data)
+                setInstructors(data.data)
             });
         axios('http://localhost:5000/topCourses')
             .then(data => {
@@ -21,7 +21,7 @@ const Home = () => {
         <>
             <BannerSection />
             <PopulerCourse courses={courses} />
-            <PopulerInstructor instructor={instructor} />
+            <PopulerInstructor instructors={instructors} />
         </>
     );
 };

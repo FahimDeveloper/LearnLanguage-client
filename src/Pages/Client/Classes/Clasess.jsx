@@ -4,7 +4,7 @@ import { FaUsers } from "react-icons/fa";
 const Clasess = () => {
     const courses = useLoaderData();
     return (
-        <div className='container mx-auto py-16 space-y-16'>
+        <div className='container mx-auto py-10 space-y-16'>
             <h2 className='titleStyle'>All Courses</h2>
             <div className='grid grid-cols-4 gap-5'>
                 {
