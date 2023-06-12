@@ -6,30 +6,40 @@ import SignIn from '../../Components/Auth/SignIn';
 import { FcGoogle } from "react-icons/fc";
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const Authentication = () => {
-    const { continueWithGoogle } = useAuth();
+    const { continueWithGoogle, showError } = useAuth();
     const [isNew, setIsNew] = useState(false);
     const handleGoogleLogin = () => {
         continueWithGoogle().then((result) => {
             const user = result.user;
             if (user) {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully create an account',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+                const userData = {
+                    userName: user.displayName,
+                    userEmail: user.email,
+                    image: user.photoUrl,
+                    role: 'student'
+                }
+                axios.post(`http://localhost:5000/addUser/`, userData)
+                    .then(data => {
+                        if (data.data.insertedId || data.data.available) {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Successfully Login',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    }).catch(error => {
+                        showError(error.message)
+                    })
             }
         })
-        // .catch(error => {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: `${error.message}`,
-        //     })
-        // })
+            .catch(error => {
+                showError(error.message)
+            })
     }
     return (
         <div className='container mx-auto grid grid-cols-5 gap-10 items-center h-screen'>

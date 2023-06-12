@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth';
 
 const SignIn = () => {
-    const { signIn } = useAuth()
+    const { signIn, showError } = useAuth()
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         signIn(data.userEmail, data.password).then((result) => {
@@ -18,11 +18,7 @@ const SignIn = () => {
                 })
             }
         }).catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: `${error.message}`,
-            })
+            showError(error.message)
         })
     }
     return (

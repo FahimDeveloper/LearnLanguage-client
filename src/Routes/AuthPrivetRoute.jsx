@@ -6,7 +6,7 @@ import Loader from "../Components/Shared/Loader/Loader";
 const AuthPrivetRoute = ({ children }) => {
     const { user, loading } = useAuth();
     if (loading) {
-        <Loader />
+        return <Loader />
     }
     if (!user) {
         return children
