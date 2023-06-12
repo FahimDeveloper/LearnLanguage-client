@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { HiShoppingCart } from "react-icons/hi2";
 
 const Navbar = () => {
@@ -15,7 +15,9 @@ const Navbar = () => {
                     <NavLink to="/allClasses"><HiShoppingCart className='text-3xl' /></NavLink>
                 </div>
                 <div>
-                    <button className='btn btn-primary px-10'>login</button>
+                    <Link to="/authentication">
+                        <button className='btn btn-primary px-10'>login</button>
+                    </Link>
                 </div>
             </div>
         </div>
