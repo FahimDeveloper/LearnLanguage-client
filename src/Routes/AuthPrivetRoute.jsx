@@ -1,13 +1,9 @@
 import { Navigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
-import Loader from "../Components/Shared/Loader/Loader";
 
 
 const AuthPrivetRoute = ({ children }) => {
-    const { user, loading } = useAuth();
-    if (loading) {
-        return <Loader />
-    }
+    const { user } = useAuth();
     if (!user) {
         return children
     } else {
