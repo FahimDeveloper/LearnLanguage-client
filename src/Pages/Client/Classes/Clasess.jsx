@@ -9,7 +9,7 @@ const Clasess = () => {
     const courses = useLoaderData();
     const navigate = useNavigate();
     const [, refetch] = useCart();
-    const { user } = useAuth();
+    const { user, showError } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
         if (user) {
@@ -21,11 +21,19 @@ const Clasess = () => {
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
-                            title: 'Item Add In Cart',
+                            title: 'Course Add In Cart',
                             showConfirmButton: false,
                             timer: 1000
                         })
+                    } else if (data.data.available) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'The course already added in you cart',
+                        })
                     }
+                }).catch(error => {
+                    showError(error.message)
                 })
         } else {
             Swal.fire({

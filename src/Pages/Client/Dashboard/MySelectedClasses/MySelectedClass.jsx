@@ -1,8 +1,41 @@
+import Swal from "sweetalert2";
+import useAuth from "../../../../Hooks/useAuth";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useCart from "../../../../Hooks/useCart";
 
 
 const MySelectedClass = () => {
-    const [cartData] = useCart();
+    const [cartData, refetch] = useCart();
+    const { user, showError } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`http://localhost:5000/deleteToCart?email=${user?.email}&id=${id}`)
+                    .then(data => {
+                        console.log(data.data)
+                        if (data.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    }).catch(error => {
+                        showError(error.message)
+                    })
+            }
+        })
+    }
     return (
         <div className="py-16">
             <div className="overflow-x-auto">
@@ -34,7 +67,7 @@ const MySelectedClass = () => {
                                         <td>{course.courseName}</td>
                                         <td>{course.instructorName}</td>
                                         <td>$45</td>
-                                        <td><button className="btn btn-error">delete</button></td>
+                                        <td><button onClick={() => handleDelete(course._id)} className="btn btn-error">delete</button></td>
                                         <td><button className="btn btn-info">pay</button></td>
                                     </tr>
                                 )
