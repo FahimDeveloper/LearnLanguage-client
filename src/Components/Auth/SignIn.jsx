@@ -30,10 +30,10 @@ const SignIn = () => {
             <h2 className='text-3xl font-medium text-center mb-5'>Sign In</h2>
             <input type="email" placeholder="Enter your email" {...register("userEmail")} className="input input-bordered w-full" />
             <input type="password" placeholder="Enter your password" {...register("password")} className="input input-bordered w-full" />
-            <div className='flex justify-between'>
-                <button className='btn btn-primary px-16 rounded-full' type='submit'>Login</button>
+            <div className="flex justify-end">
                 <p className='underline cursor-pointer'>Forgot Password</p>
             </div>
+            <button className='btn btn-primary px-16 rounded-full w-full' type='submit'>Login</button>
         </form>
     );
 };

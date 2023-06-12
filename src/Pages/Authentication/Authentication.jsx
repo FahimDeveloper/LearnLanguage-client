@@ -32,11 +32,11 @@ const Authentication = () => {
         // })
     }
     return (
-        <div className='container mx-auto grid grid-cols-2 gap-10 items-center h-screen'>
-            <div>
+        <div className='container mx-auto grid grid-cols-5 gap-10 items-center h-screen'>
+            <div className='col-span-3'>
                 <Lottie animationData={animation} loop={true} />
             </div>
-            <div className='border px-16 py-10 rounded-2xl space-y-5'>
+            <div className='border border-primary px-16 py-10 rounded-2xl space-y-5 col-span-2'>
                 {
                     isNew ? <SignUp /> : <SignIn />
                 }

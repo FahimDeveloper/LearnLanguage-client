@@ -6,6 +6,9 @@ import Home from "../Pages/Client/Home/Home";
 import Instructors from "../Pages/Client/Instructors/Instructors";
 import Clasess from "../Pages/Client/Classes/Clasess";
 import Authentication from "../Pages/Authentication/Authentication";
+import AuthPrivetRoute from "./AuthPrivetRoute";
+import Dashboard from "../Layouts/Dashboard";
+import PrivetRoute from "./PrivetRoute";
 export const router = createBrowserRouter([
     {
         path: '/', element: <App />,
@@ -19,7 +22,8 @@ export const router = createBrowserRouter([
                 path: "/allClasses", element: <Clasess />,
                 loader: () => fetch('http://localhost:5000/courses')
             },
-            { path: "/authentication", element: <Authentication /> }
+            { path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute> },
+            { path: "/authentication", element: <AuthPrivetRoute><Authentication /></AuthPrivetRoute> }
         ]
     }
 ])

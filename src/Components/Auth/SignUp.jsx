@@ -42,7 +42,7 @@ const SignUp = () => {
             <input type="password" placeholder="Enter your password" {...register("password")} className="input input-bordered w-full" required />
             <input type="password" placeholder="Confirm password" {...register("confirmPassword")} className="input input-bordered w-full" required />
             <input type="url" placeholder="image url" {...register("image")} className="input input-bordered w-full" required />
-            <button className='btn btn-primary px-16 rounded-full' type='submit'>Sign up</button>
+            <button className='btn btn-primary px-16 rounded-full w-full' type='submit'>Sign up</button>
         </form>
     );
 };
