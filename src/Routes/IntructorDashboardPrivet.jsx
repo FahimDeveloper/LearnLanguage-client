@@ -13,7 +13,6 @@ const IntructorDashboardPrivet = ({ children }) => {
     if (user && isUser === 'instructor') {
         return children
     } else {
-        console.log("hello")
         logOut();
         if (!user) {
             return <Navigate to="/authentication" replace={true} />
