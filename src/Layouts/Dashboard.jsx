@@ -1,9 +1,13 @@
 import { } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import useUser from '../Hooks/useUser';
+import Loader from '../Components/Shared/Loader/Loader';
 
 const Dashboard = () => {
-    const [isUser] = useUser();
+    const [isUser, isLoading] = useUser();
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <div className='container mx-auto'>
             <div className="drawer lg:drawer-open">

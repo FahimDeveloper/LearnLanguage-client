@@ -5,7 +5,7 @@ import useUser from '../../../Hooks/useUser';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
-    const { isUser } = useUser();
+    const [isUser, isLoading] = useUser();
     return (
         <div className='bg-base-100 py-5'>
             <div className='container mx-auto flex items-center justify-between'>
@@ -17,7 +17,7 @@ const Navbar = () => {
                     <NavLink to="/instructors">Instructors</NavLink>
                     <NavLink to="/allClasses">Classes</NavLink>
                     {
-                        user ?
+                        user && !isLoading ?
                             <NavLink
                                 to={
                                     isUser === "admin" ? "/dashboard/admin/manageClasses" : isUser === "instructor" ? "/dashboard/instructor/addClass" : '/dashboard/selectedClasses'

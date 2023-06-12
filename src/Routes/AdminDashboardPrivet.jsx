@@ -6,13 +6,14 @@ import useUser from "../Hooks/useUser";
 
 const AdminDashboardPrivet = ({ children }) => {
     const { user, loading, logOut } = useAuth()
-    const [isUser] = useUser();
-    if (loading || !isUser) {
+    const [isUser, isLoading] = useUser();
+    if (loading || isLoading) {
         return <Loader />
     }
     if (user && isUser === 'admin') {
         return children
     } else {
+        console.log('hello')
         logOut();
         if (!user) {
             return <Navigate to="/authentication" replace={true} />

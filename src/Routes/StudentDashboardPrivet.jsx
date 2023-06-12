@@ -6,8 +6,8 @@ import useUser from "../Hooks/useUser";
 
 const StudentDashboardPrivet = ({ children }) => {
     const { user, loading, logOut } = useAuth()
-    const [isUser] = useUser();
-    if (loading || !isUser) {
+    const [isUser, isLoading] = useUser();
+    if (loading || isLoading) {
         return <Loader />
     }
     if (user && isUser === 'student') {
