@@ -2,8 +2,10 @@ import { Link, NavLink } from 'react-router-dom';
 import { HiShoppingCart } from "react-icons/hi2";
 import useAuth from '../../../Hooks/useAuth';
 import useUser from '../../../Hooks/useUser';
+import useCart from '../../../Hooks/useCart';
 
 const Navbar = () => {
+    const [cartData] = useCart();
     const { user, logOut } = useAuth();
     const [isUser, isLoading] = useUser();
     return (
@@ -20,13 +22,16 @@ const Navbar = () => {
                         user && !isLoading ?
                             <NavLink
                                 to={
-                                    isUser === "admin" ? "/dashboard/admin/manageClasses" : isUser === "instructor" ? "/dashboard/instructor/addClass" : '/dashboard/selectedClasses'
+                                    isUser === "admin" ? "/dashboard/admin/manageClasses" : isUser === "instructor" ? "/dashboard/instructor/addClass" : '/dashboard/enrolledClasses'
                                 }>
                                 Dashboard
                             </NavLink>
                             : ''
                     }
-                    <NavLink to="/allClasses"><HiShoppingCart className='text-3xl' /></NavLink>
+                    <div className="indicator">
+                        <NavLink to="/allClasses"><HiShoppingCart className='text-3xl' /></NavLink>
+                        <span className="badge badge-sm badge-primary indicator-item">{cartData.length}</span>
+                    </div>
                 </div>
                 <div>
                     {
