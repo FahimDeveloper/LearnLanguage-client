@@ -1,9 +1,11 @@
 import { Link, NavLink } from 'react-router-dom';
 import { HiShoppingCart } from "react-icons/hi2";
 import useAuth from '../../../Hooks/useAuth';
+import useUser from '../../../Hooks/useUser';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const { isUser } = useUser();
     return (
         <div className='bg-base-100 py-5'>
             <div className='container mx-auto flex items-center justify-between'>
@@ -14,7 +16,16 @@ const Navbar = () => {
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/instructors">Instructors</NavLink>
                     <NavLink to="/allClasses">Classes</NavLink>
-                    {user ? <NavLink to="/dashboard">Dashboard</NavLink> : ''}
+                    {
+                        user ?
+                            <NavLink
+                                to={
+                                    isUser === "admin" ? "/dashboard/admin/manageClasses" : isUser === "instructor" ? "/dashboard/instructor/addClass" : '/dashboard/selectedClasses'
+                                }>
+                                Dashboard
+                            </NavLink>
+                            : ''
+                    }
                     <NavLink to="/allClasses"><HiShoppingCart className='text-3xl' /></NavLink>
                 </div>
                 <div>

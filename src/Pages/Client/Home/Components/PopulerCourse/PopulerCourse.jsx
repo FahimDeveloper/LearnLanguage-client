@@ -1,6 +1,47 @@
 import { FaUsers } from "react-icons/fa";
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router-dom";
+import useCart from "../../../../../Hooks/useCart";
+import useAuth from "../../../../../Hooks/useAuth";
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
 
 const PopulerCourse = ({ courses }) => {
+    const navigate = useNavigate();
+    const [, refetch] = useCart();
+    const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
+    const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
+        if (user) {
+            const cartCourse = { courseId: _id, courseName: courseName, instructorName: instructorName, userEmail: user?.email, courseBanner: courseBanner }
+            axiosSecure.post(`http://localhost:5000/addToCart`, cartCourse)
+                .then(data => {
+                    if (data.data.insertedId) {
+                        refetch();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Item Add In Cart',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                })
+        } else {
+            Swal.fire({
+                title: 'Have to login',
+                text: "You won't be able to cart this item! Please login first",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Go for login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/authentication')
+                }
+            })
+        }
+    }
     return (
         <div className='container mx-auto py-16 space-y-10'>
             <h2 className='titleStyle'>Populer Courses</h2>
@@ -24,7 +65,7 @@ const PopulerCourse = ({ courses }) => {
                                         </div>
                                     </div>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary">add to cart</button>
+                                        <button onClick={() => handleAddToCart(course)} className="btn btn-primary">add to cart</button>
                                     </div>
                                 </div>
                             </div>

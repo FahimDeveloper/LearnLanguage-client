@@ -19,19 +19,19 @@ const Dashboard = () => {
                         {
                             isUser === "admin" ?
                                 <>
-                                    <NavLink className="p-2 rounded-lg bg-zinc-50">Manage Classes</NavLink>
-                                    <NavLink className="p-2 rounded-lg bg-zinc-50">Manage Users</NavLink>
+                                    <NavLink to="/dashboard/admin/manageClasses" className="p-2 rounded-lg bg-zinc-50">Manage Classes</NavLink>
+                                    <NavLink to="/dashboard/admin/manageUsers" className="p-2 rounded-lg bg-zinc-50">Manage Users</NavLink>
                                 </>
                                 : isUser === "instructor" ?
                                     <>
-                                        <NavLink className="p-2 rounded-lg bg-zinc-50">Add Class</NavLink>
-                                        <NavLink className="p-2 rounded-lg bg-zinc-50">My Class</NavLink>
+                                        <NavLink to="/dashboard/instructor/addClass" className="p-2 rounded-lg bg-zinc-50">Add Class</NavLink>
+                                        <NavLink to="/dashboard/instructor/myClasses" className="p-2 rounded-lg bg-zinc-50">My Class</NavLink>
                                     </>
                                     :
                                     <>
-                                        <NavLink className="p-2 rounded-lg bg-zinc-50">My Selected Class</NavLink>
-                                        <NavLink className="p-2 rounded-lg bg-zinc-50">My Enrolled Class</NavLink>
-                                        <NavLink className="p-2 rounded-lg bg-zinc-50">Payment History</NavLink>
+                                        <NavLink to="/dashboard/selectedClasses" className="p-2 rounded-lg bg-zinc-50">My Selected Class</NavLink>
+                                        <NavLink to="/dashboard/enrolledClasses" className="p-2 rounded-lg bg-zinc-50">My Enrolled Class</NavLink>
+                                        <NavLink to="/dashboard/paymentHistory" className="p-2 rounded-lg bg-zinc-50">Payment History</NavLink>
                                     </>
                         }
                     </div>
