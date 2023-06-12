@@ -22,7 +22,12 @@ export const router = createBrowserRouter([
                 path: "/allClasses", element: <Clasess />,
                 loader: () => fetch('http://localhost:5000/courses')
             },
-            { path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute> },
+            {
+                path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute>,
+                children: [
+                    { path: "/dashboard" }
+                ]
+            },
             { path: "/authentication", element: <AuthPrivetRoute><Authentication /></AuthPrivetRoute> }
         ]
     }
