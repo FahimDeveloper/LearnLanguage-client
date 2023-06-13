@@ -23,8 +23,9 @@ const AddClass = () => {
             const imgURL = imgResponse.data.display_url;
             data.courseBanner = imgURL;
             data.price = parseInt(data.price);
+            data.availableSeat = parseInt(data.availableSeat);
             data.date = new Date();
-            data.status = 'panding';
+            data.status = 'pending';
             axiosSecure.post(`/addCourse/${user.email}`, data)
                 .then(data => {
                     if (data.data.insertedId) {
