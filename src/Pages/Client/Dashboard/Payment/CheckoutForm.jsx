@@ -65,7 +65,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
                 courseName: courseName,
                 courseId: courseId,
                 transactionId: paymentIntent.id,
-                data: new Date(),
+                date: new Date(),
                 price: price,
             }
             axiosSecure.post(`/payment?email=${user.email}&cartId=${cartId}`, payment)
