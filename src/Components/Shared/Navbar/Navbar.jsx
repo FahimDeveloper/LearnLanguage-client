@@ -28,12 +28,16 @@ const Navbar = () => {
                             </NavLink>
                             : ''
                     }
-                    <div className="indicator">
-                        <NavLink to="/dashboard/selectedClasses"><HiShoppingCart className='text-3xl' /></NavLink>
-                        {
-                            cartData.length > 0 && <span className="badge badge-sm badge-primary indicator-item">{cartData.length}</span>
-                        }
-                    </div>
+                    {
+                        isUser === "student" ?
+                            <div className="indicator">
+                                <NavLink to="/dashboard/selectedClasses"><HiShoppingCart className='text-3xl' /></NavLink>
+                                {
+                                    cartData.length > 0 && <span className="badge badge-sm badge-primary indicator-item">{cartData.length}</span>
+                                }
+                            </div>
+                            : ''
+                    }
                 </div>
                 <div>
                     {

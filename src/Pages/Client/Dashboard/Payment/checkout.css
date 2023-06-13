@@ -19,6 +19,7 @@ select {
     border-radius: 4px;
     background: white;
     color: #424770;
+    border: 1px solid #e1e2e9;
     letter-spacing: 0.025em;
     width: 500px;
 }
