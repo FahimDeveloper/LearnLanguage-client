@@ -29,7 +29,13 @@ const Clasess = () => {
                         Swal.fire({
                             icon: 'warning',
                             title: 'Oops...',
-                            text: 'The course already added in you cart',
+                            text: 'The course already added in your cart',
+                        })
+                    } else if (data.data.enrolled) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Enrolled',
+                            text: 'You have already enrolled this course',
                         })
                     }
                 }).catch(error => {
