@@ -26,6 +26,7 @@ const MyClass = () => {
                             <th>Course</th>
                             <th>Course Name</th>
                             <th>Available Seat</th>
+                            <th>Duration</th>
                             <th>Date</th>
                             <th>Price</th>
                             <th>Status</th>
@@ -46,6 +47,7 @@ const MyClass = () => {
                                         </td>
                                         <td>{course.courseName}</td>
                                         <td>{course.availableSeat}</td>
+                                        <td>{course.courseDuration}</td>
                                         <td>{moment(course.date).format("dd, MMM Do YY")}</td>
                                         <td>${course.price}</td>
                                         <td><p

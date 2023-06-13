@@ -9,7 +9,7 @@ const Dashboard = () => {
         return <Loader />
     }
     return (
-        <div className='container mx-auto'>
+        <div className=''>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
