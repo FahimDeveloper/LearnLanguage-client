@@ -64,7 +64,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
                 userEmail: user?.email,
                 courseName: courseName,
                 courseId: courseId,
-                transactionId: paymentIntent.id,
+                transectionId: paymentIntent.id,
                 date: new Date(),
                 price: price,
             }

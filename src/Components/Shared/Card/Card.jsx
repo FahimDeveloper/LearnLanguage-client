@@ -30,7 +30,7 @@ const Card = ({ course, handleAddToCart }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass} className={`btn ${selectedClass ? 'disabled:cursor-not-allowed' : 'btn-primary'}`}>{selectedClass ? 'Already Added' : 'add to cart'}</button>
+                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass} className={`btn ${selectedClass ? '' : 'btn-primary'}`}>{selectedClass ? 'Already Added' : 'add to cart'}</button>
                 </div>
             </div>
         </div>
