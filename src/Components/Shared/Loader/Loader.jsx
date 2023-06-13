@@ -6,7 +6,7 @@ const Loader = () => {
             <div className="flex justify-center items-end text-6xl italic space-x-1 font-medium">
                 <p>L</p>
                 <FaSpinner className="animate-spin text-5xl text-primary" />
-                <p>ding...</p>
+                <p>ading...</p>
             </div>
         </div>
     );

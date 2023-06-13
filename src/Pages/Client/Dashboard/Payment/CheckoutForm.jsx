@@ -5,10 +5,14 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import './checkout.css'
 import Swal from "sweetalert2";
+import Loader from "../../../../Components/Shared/Loader/Loader";
+import useCart from "../../../../Hooks/useCart";
 
 
 const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
+    const [loader, setLoader] = useState(false);
     const { user } = useAuth();
+    const [, refetch] = useCart();
     const [clientSecret, setClientSecret] = useState();
     const navigate = useNavigate();
     const stripe = useStripe();
@@ -36,6 +40,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
         if (error) {
             console.log('[error]', error);
         } else {
+            setLoader(true)
             console.log('[PaymentMethod]', paymentMethod);
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
@@ -54,7 +59,37 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             console.log(confirmError)
         }
         console.log('[PaymentIntent]', paymentIntent);
+        if (paymentIntent.status === 'succeeded') {
+            const payment = {
+                userEmail: user?.email,
+                courseName: courseName,
+                courseId: courseId,
+                transactionId: paymentIntent.id,
+                data: new Date(),
+                price: price,
+            }
+            axiosSecure.post(`/payment?email=${user.email}&cartId=${cartId}`, payment)
+                .then(res => {
+                    if (res.data.result.insertedId) {
+                        refetch();
+                        navigate('/dashboard/paymentHistory')
+                        setLoader(false)
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Payment success',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                })
+        }
     };
+    if (loader) {
+        return (
+            <Loader />
+        )
+    }
     return (
         <form onSubmit={handleSubmit}>
             <CardElement
