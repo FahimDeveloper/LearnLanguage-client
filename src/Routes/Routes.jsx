@@ -19,6 +19,7 @@ import MyClass from "../Pages/Instructor/MyClass/MyClass";
 import StudentDashboardPrivet from "./StudentDashboardPrivet";
 import AdminDashboardPrivet from "./AdminDashboardPrivet";
 import IntructorDashboardPrivet from "./IntructorDashboardPrivet";
+import Payment from "../Pages/Client/Dashboard/Payment/payment";
 export const router = createBrowserRouter([
     {
         path: '/', element: <App />,
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
                 children: [
                     { path: "selectedClasses", element: <StudentDashboardPrivet><MySelectedClass /></StudentDashboardPrivet> },
                     { path: "enrolledClasses", element: <StudentDashboardPrivet><MyEnrolledClass /></StudentDashboardPrivet> },
+                    { path: "payment", element: <StudentDashboardPrivet><Payment /></StudentDashboardPrivet> },
                     { path: "paymentHistory", element: <StudentDashboardPrivet><PaymentHistory /></StudentDashboardPrivet> },
                     { path: "admin/manageClasses", element: <AdminDashboardPrivet><ManageClasses /></AdminDashboardPrivet> },
                     { path: "admin/manageUsers", element: <AdminDashboardPrivet><ManageUsers /></AdminDashboardPrivet> },

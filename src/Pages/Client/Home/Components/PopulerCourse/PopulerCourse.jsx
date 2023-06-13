@@ -13,7 +13,7 @@ const PopulerCourse = ({ courses }) => {
     const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
         if (user) {
             const cartCourse = { courseId: _id, courseName: courseName, instructorName: instructorName, userEmail: user?.email, courseBanner: courseBanner }
-            axiosSecure.post(`http://localhost:5000/addToCart`, cartCourse)
+            axiosSecure.post('/addToCart', cartCourse)
                 .then(data => {
                     if (data.data.insertedId) {
                         refetch();
@@ -23,6 +23,12 @@ const PopulerCourse = ({ courses }) => {
                             title: 'Item Add In Cart',
                             showConfirmButton: false,
                             timer: 1000
+                        })
+                    } else if (data.data.available) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'The course already added in you cart',
                         })
                     }
                 })

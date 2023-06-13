@@ -2,10 +2,12 @@ import Swal from "sweetalert2";
 import useAuth from "../../../../Hooks/useAuth";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useCart from "../../../../Hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 
 const MySelectedClass = () => {
     const [cartData, refetch] = useCart();
+    const navigate = useNavigate()
     const { user, showError } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const handleDelete = (id) => {
@@ -19,7 +21,7 @@ const MySelectedClass = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`http://localhost:5000/deleteToCart?email=${user?.email}&id=${id}`)
+                axiosSecure.delete(`/deleteToCart?email=${user?.email}&id=${id}`)
                     .then(data => {
                         console.log(data.data)
                         if (data.data.deletedCount > 0) {
@@ -35,6 +37,9 @@ const MySelectedClass = () => {
                     })
             }
         })
+    }
+    const handlePaymentPrice = (price, courseId, cartId, courseName) => {
+        navigate('/dashboard/payment', { state: { price: price, courseId: courseId, cartId: cartId, courseName: courseName } })
     }
     return (
         <div className="py-16">
@@ -68,7 +73,7 @@ const MySelectedClass = () => {
                                         <td>{course.instructorName}</td>
                                         <td>$45</td>
                                         <td><button onClick={() => handleDelete(course._id)} className="btn btn-error">delete</button></td>
-                                        <td><button className="btn btn-info">pay</button></td>
+                                        <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-info">pay</button></td>
                                     </tr>
                                 )
                             })

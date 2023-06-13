@@ -9,7 +9,7 @@ const useUser = () => {
         queryKey: ['userEmail', user?.email],
         enabled: !loading && !!user && !!localStorage.getItem('access-token'),
         queryFn: async () => {
-            const res = await axiosSecure(`http://localhost:5000/users/${user.email}`)
+            const res = await axiosSecure(`/users/${user.email}`)
             return res.data.role
         }
     })

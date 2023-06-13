@@ -10,7 +10,7 @@ const useCart = () => {
         queryKey: ['email', user?.email],
         enabled: !loading && !!user && !!localStorage.getItem('access-token'),
         queryFn: async () => {
-            const res = await axiosSecure.get(`http://localhost:5000/cartData/${user.email}`)
+            const res = await axiosSecure.get(`/cartData/${user.email}`)
             return res.data
         }
     })
