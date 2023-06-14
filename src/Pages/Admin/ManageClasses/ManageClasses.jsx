@@ -1,59 +1,45 @@
-import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
-import moment from "moment";
+import Card from "./Card";
+import Swal from "sweetalert2";
+import { useQuery } from "react-query";
+import Loader from "../../../Components/Shared/Loader/Loader";
 
 const ManageClasses = () => {
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
-    const [allCourse, setAllCourse] = useState([])
-    useEffect(() => {
-        axiosSecure(`/allCourse/${user.email}`)
+    const { data: allCourse = [], isLoading, refetch } = useQuery({
+        queryKey: ['allCourseData', user.email],
+        queryFn: async () => {
+            const res = await axiosSecure(`/allCourse/${user.email}`)
+            return res.data
+        }
+    })
+    const handleStatus = (id, status) => {
+        axiosSecure.patch(`/changeStatus/${user.email}/${id}`, { status })
             .then(res => {
-                setAllCourse(res.data)
+                if (res.data.modifiedCount > 0) {
+                    refetch();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `The Course successfully ${status}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             })
-    }, [axiosSecure, user])
+    }
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <div className="py-10 space-y-16">
             <h2 className="text-4xl font-medium text-center">Manage All Course</h2>
-            <div className="overflow-x-auto">
-                <table className="table text-base">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Course Name</th>
-                            <th>Instructor Name</th>
-                            <th>Instructor Email</th>
-                            <th>Available Seat</th>
-                            <th>Duration</th>
-                            <th>Date</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Feadback</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            allCourse.map((course, index) => {
-                                return (
-                                    <tr key={course._id}>
-                                        <th>{index + 1}</th>
-                                        <td>{course.courseName}</td>
-                                        <td>{course.instructorName}</td>
-                                        <td>{course.instructorEmail}</td>
-                                        <td>{course.availableSeat}</td>
-                                        <td>{course.courseDuration}</td>
-                                        <td>{moment(course.date).format("dd, MMM Do YY")}</td>
-                                        <td>${course.price}</td>
-                                        <td>{course.status}</td>
-                                        <td><button className="btn btn-primary">Feadback</button></td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+            <div className="grid grid-cols-2 gap-3">
+                {
+                    allCourse.map(course => <Card key={course._id} course={course} handleStatus={handleStatus} />)
+                }
             </div>
         </div>
     );

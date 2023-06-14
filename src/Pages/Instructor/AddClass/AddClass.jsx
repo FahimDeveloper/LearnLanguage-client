@@ -31,7 +31,7 @@ const AddClass = () => {
             data.students = 0;
             axiosSecure.post(`/addCourse/${user.email}`, data)
                 .then(data => {
-                    if (data.data.insertedId) {
+                    if (data.data.result1.insertedId) {
                         setLoading(false)
                         Swal.fire({
                             icon: 'info',
@@ -112,7 +112,7 @@ const AddClass = () => {
                         <textarea className="textarea textarea-bordered" {...register('description')} placeholder="Type here" required></textarea>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary w-full mt-4">Add Corse</button>
+                <button type="submit" className="btn btn-primary w-full mt-4">Add Course</button>
             </form>
         </div>
     );
