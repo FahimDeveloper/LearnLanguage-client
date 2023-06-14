@@ -42,7 +42,7 @@ const Card = ({ course, handleAddToCart }) => {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-base">
                         <MdOutlineWatchLater className="text-2xl" />
-                        {course.courseDuration}
+                        {course.courseDuration} h
                     </div>
                     <div className="text-lg font-medium">
                         <p>Price : ${course.price}</p>

@@ -22,10 +22,13 @@ const AddClass = () => {
         }).then(res => res.json()).then(imgResponse => {
             const imgURL = imgResponse.data.display_url;
             data.courseBanner = imgURL;
-            data.price = parseInt(data.price);
+            data.price = parseFloat(data.price);
+            data.courseDuration = parseFloat(data.courseDuration);
             data.availableSeat = parseInt(data.availableSeat);
             data.date = new Date();
             data.status = 'pending';
+            data.feedback = '';
+            data.students = 0;
             axiosSecure.post(`/addCourse/${user.email}`, data)
                 .then(data => {
                     if (data.data.insertedId) {
@@ -59,13 +62,13 @@ const AddClass = () => {
                             <label className="label">
                                 <span className="label-text text-base">Class image</span>
                             </label>
-                            <input type="file" {...register('courseBanner')} className="input input-bordered w-96 my-0" required />
+                            <input type="file" {...register('courseBanner')} className="file-input file-input-bordered w-96 my-0" required />
                         </div>
                         <div>
                             <label className="label">
                                 <span className="label-text text-base">Course Price</span>
                             </label>
-                            <input type="number" placeholder="Type here" {...register('price')} className="input input-bordered w-96 my-0" required />
+                            <input type="text" placeholder="Type here" {...register('price')} className="input input-bordered w-96 my-0" required />
                         </div>
                     </div>
                     <div className="w-full flex gap-1">
@@ -79,7 +82,7 @@ const AddClass = () => {
                             <label className="label">
                                 <span className="label-text text-base">Instructor email</span>
                             </label>
-                            <input type="text" defaultValue={user?.email} {...register('instructorEmail')} readOnly placeholder="Type here" className="input input-bordered w-96 my-0" required />
+                            <input type="email" defaultValue={user?.email} {...register('instructorEmail')} readOnly placeholder="Type here" className="input input-bordered w-96 my-0" required />
                         </div>
                     </div>
                     <div className="w-full flex gap-1">
@@ -97,15 +100,16 @@ const AddClass = () => {
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Course Duration</span>
+                                <span className="label-text text-base">Total Hour</span>
                             </label>
-                            <select {...register('courseDuration')} defaultValue="1 month" className="select select-bordered w-96 my-0">
-                                <option>1 month</option>
-                                <option>2 month</option>
-                                <option>3 month</option>
-                                <option>5 month</option>
-                            </select>
+                            <input type="text" placeholder="Type here" {...register('courseDuration')} className="input input-bordered w-96 my-0" required />
                         </div>
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-base">Course Description</span>
+                        </label>
+                        <textarea className="textarea textarea-bordered" {...register('description')} placeholder="Type here" required></textarea>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary w-full mt-4">Add Corse</button>
