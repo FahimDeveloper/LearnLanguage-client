@@ -40,7 +40,6 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
         if (error) {
             console.log('[error]', error);
         } else {
-            setLoader(true)
             console.log('[PaymentMethod]', paymentMethod);
         }
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
@@ -59,6 +58,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             console.log(confirmError)
         }
         console.log('[PaymentIntent]', paymentIntent);
+        setLoader(true);
         if (paymentIntent.status === 'succeeded') {
             const payment = {
                 userEmail: user?.email,
@@ -71,16 +71,21 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             axiosSecure.post(`/payment?email=${user.email}&cartId=${cartId}`, payment)
                 .then(res => {
                     if (res.data.result.insertedId) {
-                        refetch();
-                        navigate('/dashboard/paymentHistory')
-                        setLoader(false)
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Payment success',
-                            showConfirmButton: false,
-                            timer: 1000
-                        })
+                        axiosSecure.patch(`/updateCourseInfo/${courseId}`)
+                            .then(res => {
+                                if (res.data.result1.modifiedCount > 0) {
+                                    refetch();
+                                    navigate('/dashboard/paymentHistory')
+                                    setLoader(false);
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: 'Payment success',
+                                        showConfirmButton: false,
+                                        timer: 1000
+                                    })
+                                }
+                            })
                     }
                 })
         }

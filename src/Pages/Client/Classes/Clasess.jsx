@@ -14,7 +14,7 @@ const Clasess = () => {
     const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
         if (user) {
             const cartCourse = { courseId: _id, courseName: courseName, instructorName: instructorName, userEmail: user.email, courseBanner: courseBanner }
-            axiosSecure.post('/addToCart', cartCourse)
+            axiosSecure.post(`/addToCart/${user.email}`, cartCourse)
                 .then(data => {
                     if (data.data.insertedId) {
                         refetch();
