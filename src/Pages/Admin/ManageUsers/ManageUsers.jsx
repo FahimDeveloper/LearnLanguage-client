@@ -2,19 +2,47 @@ import { useQuery } from "react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loader from "../../../Components/Shared/Loader/Loader";
+import Swal from "sweetalert2";
 
 
 const ManageUsers = () => {
     const [axiosSecure] = useAxiosSecure();
     const { user, loading } = useAuth();
-    const { data: allUsers = [], isLoading } = useQuery({
+    const { data: allUsers = [], isLoading, refetch } = useQuery({
         queryKey: ['allUserInformation', user?.email],
         enabled: !loading && !!user && !!localStorage.getItem('access-token'),
         queryFn: async () => {
             const res = await axiosSecure(`/allUsers/${user.email}`)
             return res.data
         }
-    })
+    });
+    const handleMakeRole = (id, role) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You want to make this user ${role}`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, change it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/changeRole/${user.email}`, { id, role })
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Successfully changed role',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    })
+            }
+        })
+    }
     if (isLoading) {
         return <Loader />
     }
@@ -51,8 +79,8 @@ const ManageUsers = () => {
                                         <td>{user.userEmail}</td>
                                         <td>{user.role}</td>
                                         <td className="space-x-3">
-                                            <button disabled={user.role === "instructor"} className="btn btn-primary btn-sm">Instructor</button>
-                                            <button disabled={user.role === "admin"} className="btn btn-primary btn-sm">Admin</button>
+                                            <button onClick={() => handleMakeRole(user._id, 'instructor')} disabled={user.role === "instructor"} className="btn btn-primary btn-sm">Instructor</button>
+                                            <button onClick={() => handleMakeRole(user._id, 'admin')} disabled={user.role === "admin"} className="btn btn-primary btn-sm">Admin</button>
                                         </td>
                                         <th>
                                             <button className="btn btn-error rounded-full btn-sm">delte user</button>
