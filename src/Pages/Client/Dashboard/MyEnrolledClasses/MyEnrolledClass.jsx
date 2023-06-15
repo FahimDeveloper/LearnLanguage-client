@@ -31,7 +31,7 @@ const MyEnrolledClass = () => {
                                 <figure><img className="w-full h-80" src={course.courseBanner} alt="course banner" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{course.courseName}</h2>
-                                    <p>If a dog chews shoes whose shoes does he choose?</p>
+                                    <p>{course.description}</p>
                                     <div className="flex justify-between">
                                         <div className="text-base flex gap-2">
                                             <MdOutlineWatchLater className="text-2xl" /> {course.courseDuration}
@@ -41,7 +41,7 @@ const MyEnrolledClass = () => {
                                         </div>
                                     </div>
                                     <div className="card-actions justify-end">
-                                        <button className="btn btn-primary px-10">Play</button>
+                                        <button className="btn btn-primary px-5">start class</button>
                                     </div>
                                 </div>
                             </div>

@@ -1,12 +1,21 @@
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import useCart from '../../../Hooks/useCart';
 import Swal from 'sweetalert2';
 import Card from '../../../Components/Shared/Card/Card';
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import Loader from '../../../Components/Shared/Loader/Loader';
 
 const Clasess = () => {
-    const courses = useLoaderData();
+    const { data: courses = [], isLoading } = useQuery({
+        queryKey: ['instructorData'],
+        queryFn: async () => {
+            const res = await axios('https://assignment-12-server-chi-wheat.vercel.app/courses');
+            return res.data
+        }
+    })
     const navigate = useNavigate();
     const [, refetch] = useCart();
     const { user, showError } = useAuth();
@@ -50,6 +59,9 @@ const Clasess = () => {
                 }
             })
         }
+    }
+    if (isLoading) {
+        return <Loader />
     }
     return (
         <div className='container mx-auto py-10 space-y-16'>

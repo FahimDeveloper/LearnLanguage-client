@@ -1,18 +1,29 @@
+import axios from "axios";
 import { FaUsers } from "react-icons/fa";
-import { useLoaderData } from 'react-router-dom';
+import { useQuery } from "react-query";
+import Loader from "../../../Components/Shared/Loader/Loader";
 
 const Instructors = () => {
-    const instructors = useLoaderData();
+    const { data: instructors = [], isLoading } = useQuery({
+        queryKey: ['instructorData'],
+        queryFn: async () => {
+            const res = await axios('https://assignment-12-server-chi-wheat.vercel.app/instructors');
+            return res.data
+        }
+    })
+    if (isLoading) {
+        return <Loader />
+    }
     return (
-        <div className='container mx-auto py-10 space-y-16'>
+        <div className='container mx-auto py-10 space-y-10'>
             <h2 className='titleStyle'>all instructors</h2>
             <div className='grid grid-cols-4 gap-5'>
                 {
                     instructors.map(course => {
                         return (
-                            <div key={course._id} className="card bg-base-100 shadow-xl">
-                                <figure><img src={course.image} className="w-full h-96 object-cover" alt="Shoes" /></figure>
-                                <div className="card-body space-y-1">
+                            <div key={course._id} className="card card-compact bg-base-100 shadow-xl">
+                                <figure><img src={course.image} className="w-full h-96 object-cover" alt="intructor image" /></figure>
+                                <div className="card-body">
                                     <h2 className="card-title">{course.userName}</h2>
                                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde nisi voluptates ex consequuntur veniam nihil?</p>
                                     <div className="flex items-center justify-between">

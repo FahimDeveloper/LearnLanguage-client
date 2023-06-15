@@ -47,7 +47,7 @@ const ManageUsers = () => {
         return <Loader />
     }
     return (
-        <div className="py-10 space-y-10">
+        <div className="p-10 space-y-10 w-full">
             <h2 className="text-3xl font-medium text-center">Manage All Users</h2>
             <div className="overflow-x-auto">
                 <table className="table">

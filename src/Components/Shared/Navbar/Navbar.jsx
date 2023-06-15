@@ -9,7 +9,7 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isUser, isLoading] = useUser();
     return (
-        <div className='bg-base-100 py-5'>
+        <div className='bg-base-100 py-1 border-b border-gray-300 w-full sticky top-0 z-50'>
             <div className='container mx-auto flex items-center justify-between'>
                 <div>
                     <h3 className='text-3xl uppercase font-bold italic'>learn language</h3>

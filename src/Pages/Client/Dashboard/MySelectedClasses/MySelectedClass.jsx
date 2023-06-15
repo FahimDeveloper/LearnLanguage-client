@@ -49,44 +49,47 @@ const MySelectedClass = () => {
         <>
             {
                 cartData.length > 0 ?
-                    <div className="overflow-x-auto">
-                        <table className="table">
-                            <thead className="bg-primary text-base-100">
-                                <tr className="text-sm">
-                                    <th>#</th>
-                                    <th>Course</th>
-                                    <th>Course Name</th>
-                                    <th>Instructor Name</th>
-                                    <th>Price</th>
-                                    <th>Action</th>
-                                    <th>pay</th>
-                                </tr>
-                            </thead>
-                            <tbody className="text-base">
-                                {
-                                    cartData.map((course, index) => {
-                                        return (
-                                            <tr key={course._id}>
-                                                <th>{index + 1}</th>
-                                                <td>
-                                                    <div className="avatar">
-                                                        <div className="mask rounded-xl w-16 h-16 object-contain">
-                                                            <img src={course.courseBanner} alt="course banner image" />
+                    <div className="p-10 w-full">
+                        <h2 className="text-center text-3xl font-medium mb-5">Your Selected Course</h2>
+                        <div className="overflow-x-auto">
+                            <table className="table">
+                                <thead className="bg-primary text-center text-base-100">
+                                    <tr className="text-sm">
+                                        <th>#</th>
+                                        <th>Course</th>
+                                        <th>Course Name</th>
+                                        <th>Instructor Name</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                        <th>pay</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="text-base text-center">
+                                    {
+                                        cartData.map((course, index) => {
+                                            return (
+                                                <tr key={course._id}>
+                                                    <th>{index + 1}</th>
+                                                    <td>
+                                                        <div className="avatar">
+                                                            <div className="mask rounded-xl w-16 h-16 object-contain">
+                                                                <img src={course.courseBanner} alt="course banner image" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td>{course.courseName}</td>
-                                                <td>{course.instructorName}</td>
-                                                <td>$45</td>
-                                                <td><button onClick={() => handleDelete(course._id)} className="btn btn-error btn-sm">delete</button></td>
-                                                <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-primary btn-sm">pay</button></td>
-                                            </tr>
-                                        )
-                                    })
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                                                    </td>
+                                                    <td>{course.courseName}</td>
+                                                    <td>{course.instructorName}</td>
+                                                    <td>{course.price}</td>
+                                                    <td><button onClick={() => handleDelete(course._id)} className="btn btn-error btn-sm">delete</button></td>
+                                                    <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-primary btn-sm">pay</button></td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div >
                     : <p className="h-screen flex items-center text-3xl font-bold">You have no selected course</p>
             }
         </>

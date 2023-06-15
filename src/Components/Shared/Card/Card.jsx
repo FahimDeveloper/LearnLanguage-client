@@ -5,7 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useUser from "../../../Hooks/useUser";
 import { MdOutlineWatchLater } from "react-icons/md";
 
-const Card = ({ course, handleAddToCart }) => {
+const Card = ({ course, handleAddToCart, status }) => {
     const [selectedClass, setSelectedClass] = useState(false)
     const [unUsed, setUnUsed] = useState(false)
     const [cartData] = useCart();
@@ -25,11 +25,14 @@ const Card = ({ course, handleAddToCart }) => {
         }
     }, [cartData, course, user, isLoading, isUser])
     return (
-        <div className={`card card-compact shadow-xl ${course.availableSeat < 1 ? 'bg-error' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
-            <figure><img src={course.courseBanner} className='w-full h-80 p-2 rounded-xl' alt="Shoes" /></figure>
+        <div className={`card card-compact shadow-xl relative ${course.availableSeat < 1 ? 'bg-error' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
+            {
+                status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : ''
+            }
+            <figure><img src={course.courseBanner} className='w-full h-80 p-2 rounded-xl' alt="class image" /></figure>
             <div className="card-body space-y-1">
                 <h2 className="card-title text-2xl">{course.courseName}</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus excepturi ut quod, sit magni.</p>
+                <p>{course.description}</p>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 text-base">
                         <FaUsers className="text-2xl" />
