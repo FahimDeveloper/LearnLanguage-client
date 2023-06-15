@@ -27,11 +27,11 @@ export const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             {
                 path: "/instructors", element: <Instructors />,
-                loader: () => fetch('http://localhost:5000/instructors')
+                loader: () => fetch('https://assignment-12-server-chi-wheat.vercel.app/instructors')
             },
             {
                 path: "/allClasses", element: <Clasess />,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch('https://assignment-12-server-chi-wheat.vercel.app/courses')
             },
             {
                 path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute>,

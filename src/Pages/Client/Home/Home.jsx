@@ -8,11 +8,11 @@ const Home = () => {
     const [instructors, setInstructors] = useState([])
     const [courses, setCourses] = useState([])
     useEffect(() => {
-        axios('http://localhost:5000/topInstructors')
+        axios('https://assignment-12-server-chi-wheat.vercel.app/topInstructors')
             .then(data => {
                 setInstructors(data.data)
             });
-        axios('http://localhost:5000/topCourses')
+        axios('https://assignment-12-server-chi-wheat.vercel.app/topCourses')
             .then(data => {
                 setCourses(data.data)
             });

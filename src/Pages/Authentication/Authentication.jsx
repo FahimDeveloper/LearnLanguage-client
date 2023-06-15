@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Lottie from "lottie-react";
-import animation from "../../../public/AuthAnimation.json"
+import animation from "../../assets/AuthAnimation.json"
 import SignUp from '../../Components/Auth/SignUp';
 import SignIn from '../../Components/Auth/SignIn';
 import { FcGoogle } from "react-icons/fc";
@@ -18,10 +18,10 @@ const Authentication = () => {
                 const userData = {
                     userName: user.displayName,
                     userEmail: user.email,
-                    image: user.photoUrl,
+                    image: user.photoURL,
                     role: 'student'
                 }
-                axios.post(`http://localhost:5000/addUser/`, userData)
+                axios.post(`https://assignment-12-server-chi-wheat.vercel.app/addUser/`, userData)
                     .then(data => {
                         if (data.data.insertedId || data.data.available) {
                             Swal.fire({

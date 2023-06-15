@@ -25,8 +25,8 @@ const Card = ({ course, handleAddToCart }) => {
         }
     }, [cartData, course, user, isLoading, isUser])
     return (
-        <div className="card card-compact bg-base-100 shadow-xl" title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
-            <figure><img src={course.courseBanner} className='w-full h-80' alt="Shoes" /></figure>
+        <div className={`card card-compact shadow-xl ${course.availableSeat < 1 ? 'bg-error' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
+            <figure><img src={course.courseBanner} className='w-full h-80 p-2 rounded-xl' alt="Shoes" /></figure>
             <div className="card-body space-y-1">
                 <h2 className="card-title text-2xl">{course.courseName}</h2>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit minus excepturi ut quod, sit magni.</p>
@@ -49,7 +49,7 @@ const Card = ({ course, handleAddToCart }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass ? '' : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "add to cart"}</button>
+                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass || unUsed ? '' : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "add to cart"}</button>
                 </div>
             </div>
         </div>

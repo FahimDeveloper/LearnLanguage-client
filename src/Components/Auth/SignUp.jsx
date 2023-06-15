@@ -22,7 +22,7 @@ const SignUp = () => {
                             image: data.image,
                             role: 'student'
                         }
-                        axios.post(`http://localhost:5000/addUser/`, userData)
+                        axios.post(`https://assignment-12-server-chi-wheat.vercel.app/addUser/`, userData)
                             .then(data => {
                                 if (data.data.insertedId) {
                                     Swal.fire({

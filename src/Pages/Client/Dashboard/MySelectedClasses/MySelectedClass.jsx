@@ -50,9 +50,9 @@ const MySelectedClass = () => {
             {
                 cartData.length > 0 ?
                     <div className="overflow-x-auto">
-                        <table className="table text-lg">
+                        <table className="table">
                             <thead className="bg-primary text-base-100">
-                                <tr className="text-base">
+                                <tr className="text-sm">
                                     <th>#</th>
                                     <th>Course</th>
                                     <th>Course Name</th>
@@ -62,7 +62,7 @@ const MySelectedClass = () => {
                                     <th>pay</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="text-base">
                                 {
                                     cartData.map((course, index) => {
                                         return (
@@ -70,7 +70,7 @@ const MySelectedClass = () => {
                                                 <th>{index + 1}</th>
                                                 <td>
                                                     <div className="avatar">
-                                                        <div className="mask rounded-xl w-16 h-16">
+                                                        <div className="mask rounded-xl w-16 h-16 object-contain">
                                                             <img src={course.courseBanner} alt="course banner image" />
                                                         </div>
                                                     </div>
@@ -78,8 +78,8 @@ const MySelectedClass = () => {
                                                 <td>{course.courseName}</td>
                                                 <td>{course.instructorName}</td>
                                                 <td>$45</td>
-                                                <td><button onClick={() => handleDelete(course._id)} className="btn btn-error">delete</button></td>
-                                                <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-info">pay</button></td>
+                                                <td><button onClick={() => handleDelete(course._id)} className="btn btn-error btn-sm">delete</button></td>
+                                                <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-primary btn-sm">pay</button></td>
                                             </tr>
                                         )
                                     })
