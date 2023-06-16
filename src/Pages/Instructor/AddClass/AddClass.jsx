@@ -50,8 +50,8 @@ const AddClass = () => {
     }
     return (
         <div className='h-screen flex items-center'>
-            <form onSubmit={handleSubmit(onSubmit)} className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} border border-primary p-10 rounded-xl`}>
-                <h2 className="text-4xl font-medium text-center">Add New Class</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className={`${isDarkMode ? 'bg-stone-800 text-stone-600' : 'bg-base-100'} border border-primary p-10 rounded-xl`}>
+                <h2 className={`text-4xl font-medium text-center ${isDarkMode ? 'text-base-100' : ''}`}>Add New Class</h2>
                 <div className="space-y-2">
                     <div className="form-control">
                         <label className="label">

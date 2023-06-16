@@ -8,21 +8,24 @@ import TestimonialSection from './Components/TestimonialSection/TestimonialSecti
 const Home = () => {
     const [instructors, setInstructors] = useState([])
     const [courses, setCourses] = useState([])
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
+        setLoading(true);
         axios('https://assignment-12-server-chi-wheat.vercel.app/topInstructors')
             .then(data => {
                 setInstructors(data.data)
             });
         axios('https://assignment-12-server-chi-wheat.vercel.app/topCourses')
             .then(data => {
+                setLoading(false)
                 setCourses(data.data)
             });
     }, [])
     return (
         <>
             <BannerSection />
-            <PopulerCourse courses={courses} />
-            <PopulerInstructor instructors={instructors} />
+            <PopulerCourse courses={courses} loading={loading} />
+            <PopulerInstructor instructors={instructors} loading={loading} />
             <TestimonialSection />
         </>
     );

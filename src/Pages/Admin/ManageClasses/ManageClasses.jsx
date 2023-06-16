@@ -5,8 +5,10 @@ import Swal from "sweetalert2";
 import { useQuery } from "react-query";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import { useState } from "react";
+import useTheme from "../../../Hooks/useTheme";
 
 const ManageClasses = () => {
+    const { isDarkMode } = useTheme();
     const [selectedId, setSelectedId] = useState('');
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
@@ -62,11 +64,11 @@ const ManageClasses = () => {
                 }
             </div>
             <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-            <form onSubmit={handleModalFeedback} className="modal modalMargin">
-                <div className="modal-box space-y-5">
+            <form onSubmit={handleModalFeedback} className='modal modalMargin'>
+                <div className={`modal-box space-y-6 ${isDarkMode ? 'bg-stone-800 text-white' : 'bg-base-100'}`}>
                     <label htmlFor="my_modal_6" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">X</label>
                     <div>
-                        <textarea className="textarea textarea-bordered w-full" name="feedback" placeholder="Enter your feedback"></textarea>
+                        <textarea className={`textarea textarea-bordered w-full ${isDarkMode ? 'bg-stone-900' : ''}`} name="feedback" placeholder="Enter your feedback"></textarea>
                         <button className="btn btn-primary btn-sm">send feedback</button>
                     </div>
                 </div>
