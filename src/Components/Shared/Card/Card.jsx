@@ -30,24 +30,24 @@ const Card = ({ course, handleAddToCart, status }) => {
                 status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : ''
             }
             <figure><img src={course.courseBanner} className='w-full h-80 p-2 rounded-xl' alt="class image" /></figure>
-            <div className="card-body space-y-1">
-                <h2 className="card-title text-2xl">{course.courseName}</h2>
+            <div className="card-body lg:space-y-1">
+                <h2 className="text-xl font-medium lg:text-2xl truncate">{course.courseName}</h2>
                 <p>{course.description}</p>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-base">
+                <div className="flex items-center justify-between lg:text-base">
+                    <div className="flex items-center gap-2">
                         <FaUsers className="text-2xl" />
                         {course.students}
                     </div>
-                    <div className="text-base font-medium">
+                    <div className="font-medium">
                         <p>Available Seats :  {course.availableSeat}</p>
                     </div>
                 </div>
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-base">
+                    <div className="flex items-center gap-2 lg:text-base">
                         <MdOutlineWatchLater className="text-2xl" />
                         {course.courseDuration} h
                     </div>
-                    <div className="text-lg font-medium">
+                    <div className="lg:text-lg text-base font-medium">
                         <p>Price : ${course.price}</p>
                     </div>
                 </div>

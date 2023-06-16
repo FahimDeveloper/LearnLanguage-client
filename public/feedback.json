@@ -1,0 +1,37 @@
+[
+    {
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "image": "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "feedback": "The courses offered on this website are excellent! I have learned so much and have been able to apply the knowledge in my professional career. The instructors are knowledgeable and engaging. Highly recommended!",
+        "rating": 5
+    },
+    {
+        "name": "Jane Smith",
+        "email": "janesmith@example.com",
+        "image": "https://images.pexels.com/photos/1553783/pexels-photo-1553783.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "feedback": "I'm really impressed with the quality of the course material. The content is well-structured and easy to follow. The exercises and quizzes help reinforce the concepts effectively. The customer support is also top-notch. Great job!",
+        "rating": 4.5
+    },
+    {
+        "name": "Robert Johnson",
+        "email": "robertjohnson@example.com",
+        "image": "https://images.pexels.com/photos/17133222/pexels-photo-17133222/free-photo-of-portrait-of-man.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "feedback": "I have taken multiple courses on this platform, and I must say, it's been a fantastic learning experience. The courses are comprehensive, and the instructors explain complex topics in a simplified manner. The interactive nature of the platform keeps me engaged throughout the lessons. Kudos to the team!",
+        "rating": 4.8
+    },
+    {
+        "name": "Sarah Thompson",
+        "email": "sarahthompson@example.com",
+        "image": "https://images.pexels.com/photos/769772/pexels-photo-769772.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "feedback": "I'm extremely satisfied with the courses I've enrolled in on this website. The course materials are well-researched and up-to-date, providing relevant knowledge and practical skills. The platform is user-friendly, and the learning process is enjoyable. I highly recommend it to anyone looking to enhance their education.",
+        "rating": 4.7
+    },
+    {
+        "name": "David Wilson",
+        "email": "davidwilson@example.com",
+        "image": "https://images.pexels.com/photos/16246041/pexels-photo-16246041/free-photo-of-portrait-of-man-in-white-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "feedback": "The educational courses offered here are exceptional. The instructors are experts in their fields and deliver the content in an engaging manner. The interactive exercises and assessments provide a valuable learning experience. The platform's user interface is intuitive, making it easy to navigate. I'm glad I found this website!",
+        "rating": 4.6
+    }
+]

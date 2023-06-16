@@ -20,9 +20,11 @@ import StudentDashboardPrivet from "./StudentDashboardPrivet";
 import AdminDashboardPrivet from "./AdminDashboardPrivet";
 import IntructorDashboardPrivet from "./IntructorDashboardPrivet";
 import Payment from "../Pages/Client/Dashboard/Payment/payment";
+import Error from "../Pages/Error/Error";
 export const router = createBrowserRouter([
     {
         path: '/', element: <App />,
+        errorElement: <Error />,
         children: [
             { path: "/", element: <Home /> },
             { path: "/instructors", element: <Instructors /> },
@@ -32,6 +34,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute>,
+        errorElement: <Error />,
         children: [
             { path: "selectedClasses", element: <StudentDashboardPrivet><MySelectedClass /></StudentDashboardPrivet> },
             { path: "enrolledClasses", element: <StudentDashboardPrivet><MyEnrolledClass /></StudentDashboardPrivet> },

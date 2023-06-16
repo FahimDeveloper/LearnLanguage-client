@@ -56,13 +56,23 @@ const PopulerCourse = ({ courses }) => {
         <div className='container mx-auto py-10 space-y-10'>
             <h2 className='titleStyle'>Populer Courses</h2>
             <Swiper
-                slidesPerView={4}
+                slidesPerView={2}
                 spaceBetween={10}
                 pagination={{
                     clickable: true,
                 }}
+                breakpoints={{
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                    },
+                    1280: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                    },
+                }}
                 modules={[Pagination]}
-                className="mySwiper h-[610px]"
+                className="mySwiper lg:h-[610px] h-[550px]"
             >
                 {
                     courses.slice(0, 6).map(course => <SwiperSlide key={course._id}><Card course={course} handleAddToCart={handleAddToCart} status={'populer'} /></SwiperSlide>)

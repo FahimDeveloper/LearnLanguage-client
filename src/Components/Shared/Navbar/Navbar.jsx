@@ -5,8 +5,11 @@ import useUser from '../../../Hooks/useUser';
 import useCart from '../../../Hooks/useCart';
 import { HiSun, HiMoon } from "react-icons/hi";
 import { useState } from 'react';
+import logo from '../../../assets/images/logo.png'
+import { HiBars3CenterLeft } from "react-icons/hi2";
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
     const [cartData] = useCart();
     const [isMoon, isSetMoon] = useState(true);
     const { user, logOut } = useAuth();
@@ -14,10 +17,14 @@ const Navbar = () => {
     return (
         <div className='bg-base-100 py-1 border-b border-gray-300 w-full sticky top-0 z-50'>
             <div className='container mx-auto flex items-center justify-between'>
-                <div>
-                    <h3 className='text-3xl uppercase font-bold italic'>learn language</h3>
+                <div onClick={() => setIsOpen(!isOpen)} className='border rounded px-2 py-1 md:hidden flex'>
+                    <HiBars3CenterLeft className='text-2xl' />
                 </div>
-                <div className='text-xl font-medium flex items-center gap-5'>
+                <div className='flex items-center'>
+                    <img className='w-16 h-16' src={logo} alt="" />
+                    <h3 className='text-3xl capitalize font-bold italic'><span className='text-primary'>world</span> talk</h3>
+                </div>
+                <div className='text-xl font-medium md:flex hidden items-center gap-5'>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
                     <NavLink to="/instructors" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Instructors</NavLink>
                     <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Classes</NavLink>
@@ -69,6 +76,33 @@ const Navbar = () => {
                     }
                 </div>
             </div>
+            {
+                isOpen ? <div className='text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full'>
+                    <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
+                    <NavLink to="/instructors" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Instructors</NavLink>
+                    <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Classes</NavLink>
+                    {
+                        user && !isLoading ?
+                            <NavLink
+                                to={
+                                    isUser === "admin" ? "/dashboard/admin/manageClasses" : isUser === "instructor" ? "/dashboard/instructor/addClass" : '/dashboard/enrolledClasses'
+                                }>
+                                Dashboard
+                            </NavLink>
+                            : ''
+                    }
+                    {
+                        isUser === "student" ?
+                            <div className="indicator">
+                                <Link to="/dashboard/selectedClasses"><HiShoppingCart className='text-3xl' /></Link>
+                                {
+                                    cartData.length > 0 && <span className="badge badge-sm badge-primary indicator-item">{cartData.length}</span>
+                                }
+                            </div>
+                            : ''
+                    }
+                </div> : ''
+            }
         </div>
     );
 };
