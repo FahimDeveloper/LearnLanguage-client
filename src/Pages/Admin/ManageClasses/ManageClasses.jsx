@@ -4,8 +4,10 @@ import Card from "./Card";
 import Swal from "sweetalert2";
 import { useQuery } from "react-query";
 import Loader from "../../../Components/Shared/Loader/Loader";
+import { useState } from "react";
 
 const ManageClasses = () => {
+    const [selectedId, setSelectedId] = useState('');
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const { data: allCourse = [], isLoading, refetch } = useQuery({
@@ -30,6 +32,24 @@ const ManageClasses = () => {
                 }
             })
     }
+    const handleModalFeedback = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const feedback = form.feedback.value
+        axiosSecure.put(`/giveFeedback/${user.email}/${selectedId}`, { feedback })
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'feedback send successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    form.reset();
+                }
+            })
+    }
     if (isLoading) {
         return <Loader />
     }
@@ -38,9 +58,19 @@ const ManageClasses = () => {
             <h2 className="text-4xl font-medium text-center">Manage All Course</h2>
             <div className="grid grid-cols-2 gap-3">
                 {
-                    allCourse.map(course => <Card key={course._id} course={course} handleStatus={handleStatus} />)
+                    allCourse.map(course => <Card key={course._id} course={course} handleStatus={handleStatus} setSelectedId={setSelectedId} />)
                 }
             </div>
+            <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+            <form onSubmit={handleModalFeedback} className="modal modalMargin">
+                <div className="modal-box space-y-5">
+                    <label htmlFor="my_modal_6" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">X</label>
+                    <div>
+                        <textarea className="textarea textarea-bordered w-full" name="feedback" placeholder="Enter your feedback"></textarea>
+                        <button className="btn btn-primary btn-sm">send feedback</button>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 };

@@ -3,9 +3,11 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import Swal from "sweetalert2";
+import useTheme from "../../../Hooks/useTheme";
 
 
 const ManageUsers = () => {
+    const { isDarkMode } = useTheme();
     const [axiosSecure] = useAxiosSecure();
     const { user, loading } = useAuth();
     const { data: allUsers = [], isLoading, refetch } = useQuery({
@@ -79,8 +81,8 @@ const ManageUsers = () => {
                                         <td>{user.userEmail}</td>
                                         <td>{user.role}</td>
                                         <td className="space-x-3">
-                                            <button onClick={() => handleMakeRole(user._id, 'instructor')} disabled={user.role === "instructor"} className="btn btn-primary btn-sm">Instructor</button>
-                                            <button onClick={() => handleMakeRole(user._id, 'admin')} disabled={user.role === "admin"} className="btn btn-primary btn-sm">Admin</button>
+                                            <button onClick={() => handleMakeRole(user._id, 'instructor')} disabled={user.role === "instructor"} className={`btn btn-primary btn-sm ${user.role === "instructor" ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : ''}`}>Instructor</button>
+                                            <button onClick={() => handleMakeRole(user._id, 'admin')} disabled={user.role === "admin"} className={`btn btn-primary btn-sm ${user.role === "admin" ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : ''}`}>Admin</button>
                                         </td>
                                         <th>
                                             <button className="btn btn-error rounded-full btn-sm">delte user</button>

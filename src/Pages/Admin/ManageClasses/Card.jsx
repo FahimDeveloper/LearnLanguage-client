@@ -1,7 +1,9 @@
 // import moment from "moment";
 import { useEffect, useState } from "react";
 import { MdOutlineWatchLater } from "react-icons/md";
-const Card = ({ course, handleStatus }) => {
+import useTheme from "../../../Hooks/useTheme";
+const Card = ({ course, handleStatus, setSelectedId }) => {
+    const { isDarkMode } = useTheme();
     const [status, setStatus] = useState(false);
     useEffect(() => {
         if (course.status === 'approved' || course.status === 'deny') {
@@ -9,7 +11,7 @@ const Card = ({ course, handleStatus }) => {
         }
     }, [course])
     return (
-        <div className="card card-side card-compact bg-base-100 shadow-xl relative">
+        <div className={`${isDarkMode ? 'bg-stone-800' : 'bg-base-100'} card card-side card-compact bg-base-100 shadow-xl relative`}>
             <figure><img className="w-56 h-56 object-cover" src={course.courseBanner} alt="course banner" /></figure>
             <div className="card-body">
                 <div className={`badge badge-sm uppercase absolute left-1 top-1 ${course.status === "pending" ? 'badge-warning' : course.status === "approved" ? 'badge-success' : 'badge-error'}`}>{course.status}</div>
@@ -29,9 +31,9 @@ const Card = ({ course, handleStatus }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleStatus(course._id, 'deny')} disabled={status} className="btn btn-sm btn-error">deny</button>
-                    <button onClick={() => handleStatus(course._id, 'approved')} disabled={status} className="btn btn-sm btn-success">approved</button>
-                    <button className="btn btn-sm btn-primary">feedback</button>
+                    <button onClick={() => handleStatus(course._id, 'deny')} disabled={status} className={`${status ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : ''} btn btn-xs btn-error`}>deny</button>
+                    <button onClick={() => handleStatus(course._id, 'approved')} disabled={status} className={`${status ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : ''} btn btn-xs btn-success`}>approved</button>
+                    <label htmlFor="my_modal_6" onClick={() => setSelectedId(course._id)} className="btn btn-xs btn-primary">send feedback</label>
                 </div>
             </div>
         </div>

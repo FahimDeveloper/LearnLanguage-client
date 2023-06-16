@@ -7,8 +7,10 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import useTheme from '../../Hooks/useTheme';
 
 const Authentication = () => {
+    const { isDarkMode } = useTheme();
     const { continueWithGoogle, showError } = useAuth();
     const [isNew, setIsNew] = useState(false);
     const handleGoogleLogin = () => {
@@ -42,22 +44,24 @@ const Authentication = () => {
             })
     }
     return (
-        <div className='container mx-auto grid grid-cols-5 gap-10 items-center h-screen'>
-            <div className='col-span-3'>
-                <Lottie animationData={animation} loop={true} />
-            </div>
-            <div className='border border-primary px-16 py-10 rounded-2xl space-y-5 col-span-2'>
-                {
-                    isNew ? <SignUp /> : <SignIn />
-                }
-                <div onClick={handleGoogleLogin} className='flex gap-2 items-center cursor-pointer border rounded-full justify-center py-1'>
-                    Continue With Google <FcGoogle className='text-3xl' />
+        <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'}`}>
+            <div className='container mx-auto grid grid-cols-5 gap-10 items-center h-screen'>
+                <div className='col-span-3'>
+                    <Lottie animationData={animation} loop={true} />
                 </div>
-                <div className='text-center'>
+                <div className={`border border-primary px-16 py-10 rounded-2xl space-y-5 col-span-2 ${isDarkMode ? 'bg-stone-800' : 'bg-base-100'}`}>
                     {
-                        isNew ? <p>Already Have an account? please <span className='cursor-pointer underline text-blue-400' onClick={() => setIsNew(!isNew)}>Login</span></p>
-                            : <p>Do not Have an account? please <span className='cursor-pointer underline text-blue-400' onClick={() => setIsNew(!isNew)}>Register</span></p>
+                        isNew ? <SignUp /> : <SignIn />
                     }
+                    <div onClick={handleGoogleLogin} className='flex gap-2 items-center cursor-pointer border rounded-full justify-center py-1'>
+                        Continue With Google <FcGoogle className='text-3xl' />
+                    </div>
+                    <div className='text-center'>
+                        {
+                            isNew ? <p>Already Have an account? please <span className='cursor-pointer underline text-blue-400' onClick={() => setIsNew(!isNew)}>Login</span></p>
+                                : <p>Do not Have an account? please <span className='cursor-pointer underline text-blue-400' onClick={() => setIsNew(!isNew)}>Register</span></p>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

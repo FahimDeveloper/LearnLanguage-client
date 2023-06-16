@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import moment from "moment";
+import useTheme from "../../../Hooks/useTheme";
 
 
 const MyClass = () => {
+    const { isDarkMode } = useTheme();
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const [myClassData, setMyClassData] = useState([])
@@ -57,7 +59,7 @@ const MyClass = () => {
                                                     </td>
                                                     <td><button className="btn btn-primary btn-sm">update</button></td>
                                                     <dialog id="my_modal_3" className="modal">
-                                                        <form method="dialog" className="modal-box">
+                                                        <form method="dialog" className={`modal-box ${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`}>
                                                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                                             <h3 className="font-bold text-lg">Feedback From Admin</h3>
                                                             <p className="py-4">{course.feedback !== "" ? course.feedback : "You have no feedback for this course"}</p>

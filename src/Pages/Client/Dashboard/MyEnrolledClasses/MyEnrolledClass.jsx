@@ -4,9 +4,11 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import Loader from "../../../../Components/Shared/Loader/Loader";
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
+import useTheme from "../../../../Hooks/useTheme";
 
 
 const MyEnrolledClass = () => {
+    const { isDarkMode } = useTheme();
     const [axiosSecure] = useAxiosSecure();
     const { user, loading } = useAuth();
     const { data: accessCourse = [], isLoading } = useQuery({
@@ -27,7 +29,7 @@ const MyEnrolledClass = () => {
                 {
                     accessCourse.map(course => {
                         return (
-                            <div key={course._id} className="card card-compact w-96 bg-base-100 shadow-xl">
+                            <div key={course._id} className={`${isDarkMode ? 'bg-stone-800' : 'bg-base-100'} card card-compact w-96 bg-base-100 shadow-xl`}>
                                 <figure><img className="w-full h-80" src={course.courseBanner} alt="course banner" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">{course.courseName}</h2>

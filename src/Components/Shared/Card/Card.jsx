@@ -4,8 +4,11 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useUser from "../../../Hooks/useUser";
 import { MdOutlineWatchLater } from "react-icons/md";
+import useTheme from "../../../Hooks/useTheme";
+
 
 const Card = ({ course, handleAddToCart, status }) => {
+    const { isDarkMode } = useTheme();
     const [selectedClass, setSelectedClass] = useState(false)
     const [unUsed, setUnUsed] = useState(false)
     const [cartData] = useCart();
@@ -25,11 +28,11 @@ const Card = ({ course, handleAddToCart, status }) => {
         }
     }, [cartData, course, user, isLoading, isUser])
     return (
-        <div className={`card card-compact shadow-xl relative ${course.availableSeat < 1 ? 'bg-error' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
+        <div className={`card card-compact shadow-xl relative ${course.availableSeat < 1 ? 'bg-error' : isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
             {
                 status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : ''
             }
-            <figure><img src={course.courseBanner} className='w-full h-80 p-2 rounded-xl' alt="class image" /></figure>
+            <figure><img src={course.courseBanner} className='w-full md:h-80 h-72 p-2 rounded-xl' alt="class image" /></figure>
             <div className="card-body lg:space-y-1">
                 <h2 className="text-xl font-medium lg:text-2xl truncate">{course.courseName}</h2>
                 <p>{course.description}</p>
@@ -52,7 +55,7 @@ const Card = ({ course, handleAddToCart, status }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass || unUsed ? '' : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "add to cart"}</button>
+                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass || unUsed ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "add to cart"}</button>
                 </div>
             </div>
         </div>

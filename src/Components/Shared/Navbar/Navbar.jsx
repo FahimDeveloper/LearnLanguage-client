@@ -7,15 +7,16 @@ import { HiSun, HiMoon } from "react-icons/hi";
 import { useState } from 'react';
 import logo from '../../../assets/images/logo.png'
 import { HiBars3CenterLeft } from "react-icons/hi2";
+import useTheme from '../../../Hooks/useTheme';
 
 const Navbar = () => {
+    const { toggleTheme, isDarkMode } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [cartData] = useCart();
-    const [isMoon, isSetMoon] = useState(true);
     const { user, logOut } = useAuth();
     const [isUser, isLoading] = useUser();
     return (
-        <div className='bg-base-100 py-1 border-b border-gray-300 w-full sticky top-0 z-50'>
+        <div className={`${isDarkMode ? ' bg-stone-950 text-base-100' : 'bg-base-100 border-b'} py-1 border-gray-300 w-full sticky top-0 z-50`}>
             <div className='container mx-auto flex items-center justify-between'>
                 <div onClick={() => setIsOpen(!isOpen)} className='border rounded px-2 py-1 md:hidden flex'>
                     <HiBars3CenterLeft className='text-2xl' />
@@ -50,7 +51,7 @@ const Navbar = () => {
                     }
                 </div>
                 <div className='flex items-center gap-3'>
-                    <div onClick={() => isSetMoon(!isMoon)} className='cursor-pointer'>{isMoon ? <HiSun className='text-3xl border rounded-full w-12 h-12 p-2' /> : <HiMoon className='text-3xl border rounded-full w-12 h-12 p-2' />}</div>
+                    <div onClick={toggleTheme} className='cursor-pointer'>{isDarkMode ? <HiMoon className='text-2xl border rounded-full w-10 h-10 p-2' /> : <HiSun className='text-2xl border rounded-full w-10 h-10 p-2' />}</div>
                     {
                         user ?
                             <div className='flex items-center gap-2'>
@@ -60,7 +61,7 @@ const Navbar = () => {
                                             <img className='rounded-full object-cover cursor-pointer' src={user?.photoURL ? user?.photoURL : 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg'} alt="user image" />
                                         </div>
                                     </label>
-                                    <div tabIndex={0} className="dropdown-content card py-5 mt-3 p-2 shadow bg-base-100 rounded-box w-80">
+                                    <div tabIndex={0} className={`dropdown-content card py-5 mt-3 p-2 shadow bg-base-100 rounded-box w-80 ${isDarkMode ? 'bg-stone-800' : 'bg-base-100'}`}>
                                         <img className='rounded-full h-24 w-24 object-contain mx-auto cursor-pointer' src={user?.photoURL ? user?.photoURL : 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg'} alt="user image" />
                                         <div className='text-center space-y-1'>
                                             <h3 className='text-xl font-medium'>{user.displayName}</h3>
@@ -77,7 +78,7 @@ const Navbar = () => {
                 </div>
             </div>
             {
-                isOpen ? <div className='text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full'>
+                isOpen ? <div className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full`}>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
                     <NavLink to="/instructors" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Instructors</NavLink>
                     <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Classes</NavLink>

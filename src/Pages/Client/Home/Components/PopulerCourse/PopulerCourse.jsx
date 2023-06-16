@@ -8,8 +8,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import Card from '../../../../../Components/Shared/Card/Card';
+import useTheme from '../../../../../Hooks/useTheme';
 
 const PopulerCourse = ({ courses }) => {
+    const { isDarkMode } = useTheme();
     const navigate = useNavigate();
     const [, refetch] = useCart();
     const { user } = useAuth();
@@ -53,31 +55,33 @@ const PopulerCourse = ({ courses }) => {
         }
     }
     return (
-        <div className='container mx-auto py-10 space-y-10'>
-            <h2 className='titleStyle'>Populer Courses</h2>
-            <Swiper
-                slidesPerView={2}
-                spaceBetween={10}
-                pagination={{
-                    clickable: true,
-                }}
-                breakpoints={{
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 10,
-                    },
-                    1280: {
-                        slidesPerView: 4,
-                        spaceBetween: 10,
-                    },
-                }}
-                modules={[Pagination]}
-                className="mySwiper lg:h-[610px] h-[550px]"
-            >
-                {
-                    courses.slice(0, 6).map(course => <SwiperSlide key={course._id}><Card course={course} handleAddToCart={handleAddToCart} status={'populer'} /></SwiperSlide>)
-                }
-            </Swiper>
+        <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} py-10`}>
+            <div className='container mx-auto space-y-10'>
+                <h2 className='titleStyle'>Populer Courses</h2>
+                <Swiper
+                    slidesPerView={2}
+                    spaceBetween={10}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 3,
+                            spaceBetween: 10,
+                        },
+                        1280: {
+                            slidesPerView: 4,
+                            spaceBetween: 10,
+                        },
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper lg:h-[610px] h-[550px]"
+                >
+                    {
+                        courses.slice(0, 6).map(course => <SwiperSlide key={course._id}><Card course={course} handleAddToCart={handleAddToCart} status={'populer'} /></SwiperSlide>)
+                    }
+                </Swiper>
+            </div>
         </div>
     );
 };

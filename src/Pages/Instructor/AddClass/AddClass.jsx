@@ -4,9 +4,11 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Loader from "../../../Components/Shared/Loader/Loader";
+import useTheme from "../../../Hooks/useTheme";
 
 
 const AddClass = () => {
+    const { isDarkMode } = useTheme();
     const { user } = useAuth();
     const [loading, setLoading] = useState(false);
     const { register, handleSubmit, reset } = useForm();
@@ -47,26 +49,26 @@ const AddClass = () => {
         return <Loader />
     }
     return (
-        <div className="h-screen flex items-center">
-            <form onSubmit={handleSubmit(onSubmit)} className="border border-primary p-10 rounded-xl">
+        <div className='h-screen flex items-center'>
+            <form onSubmit={handleSubmit(onSubmit)} className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} border border-primary p-10 rounded-xl`}>
                 <h2 className="text-4xl font-medium text-center">Add New Class</h2>
                 <div className="space-y-2">
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-base">Class Name</span>
+                            <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Class Name</span>
                         </label>
                         <input type="text" placeholder="Type here" {...register('courseName')} className="input input-bordered w-full my-0" required />
                     </div>
                     <div className="w-full flex gap-1">
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Class image</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Class image</span>
                             </label>
                             <input type="file" {...register('courseBanner')} className="file-input file-input-bordered w-96 my-0" required />
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Course Price</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Course Price</span>
                             </label>
                             <input type="text" placeholder="Type here" {...register('price')} className="input input-bordered w-96 my-0" required />
                         </div>
@@ -74,13 +76,13 @@ const AddClass = () => {
                     <div className="w-full flex gap-1">
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Instructor Name</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Instructor Name</span>
                             </label>
                             <input type="text" defaultValue={user?.displayName} {...register('instructorName')} readOnly placeholder="Type here" className="input input-bordered w-96 my-0" required />
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Instructor email</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Instructor email</span>
                             </label>
                             <input type="email" defaultValue={user?.email} {...register('instructorEmail')} readOnly placeholder="Type here" className="input input-bordered w-96 my-0" required />
                         </div>
@@ -88,7 +90,7 @@ const AddClass = () => {
                     <div className="w-full flex gap-1">
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Available Seat</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Available Seat</span>
                             </label>
                             <select {...register('availableSeat')} defaultValue="50" className="select select-bordered w-96 my-0">
                                 <option>50</option>
@@ -100,14 +102,14 @@ const AddClass = () => {
                         </div>
                         <div>
                             <label className="label">
-                                <span className="label-text text-base">Total Hour</span>
+                                <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Total Hour</span>
                             </label>
                             <input type="text" placeholder="Type here" {...register('courseDuration')} className="input input-bordered w-96 my-0" required />
                         </div>
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-base">Course Description</span>
+                            <span className={`label-text text-base ${isDarkMode ? 'text-base-100' : 'text-stone-800'}`}>Course Description</span>
                         </label>
                         <textarea className="textarea textarea-bordered" {...register('description')} placeholder="Type here" required></textarea>
                     </div>
