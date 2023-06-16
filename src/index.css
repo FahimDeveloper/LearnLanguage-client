@@ -9,3 +9,23 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
+
+.active {
+    @apply text-primary
+}
+
+.nonActive:hover {
+    @apply text-primary
+}
+
+.disActive {
+    @apply flex items-center gap-3 border border-primary rounded p-1
+}
+
+.activeDash {
+    @apply flex items-center gap-3 bg-primary text-base-100 p-1 border border-white rounded
+}
+
+.disActive:hover {
+    @apply bg-primary text-base-100 border-white rounded
+}

@@ -27,20 +27,20 @@ export const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             { path: "/instructors", element: <Instructors /> },
             { path: "/allClasses", element: <Clasess /> },
-            {
-                path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute>,
-                children: [
-                    { path: "selectedClasses", element: <StudentDashboardPrivet><MySelectedClass /></StudentDashboardPrivet> },
-                    { path: "enrolledClasses", element: <StudentDashboardPrivet><MyEnrolledClass /></StudentDashboardPrivet> },
-                    { path: "payment", element: <StudentDashboardPrivet><Payment /></StudentDashboardPrivet> },
-                    { path: "paymentHistory", element: <StudentDashboardPrivet><PaymentHistory /></StudentDashboardPrivet> },
-                    { path: "admin/manageClasses", element: <AdminDashboardPrivet><ManageClasses /></AdminDashboardPrivet> },
-                    { path: "admin/manageUsers", element: <AdminDashboardPrivet><ManageUsers /></AdminDashboardPrivet> },
-                    { path: "instructor/addClass", element: <IntructorDashboardPrivet><AddClass /></IntructorDashboardPrivet> },
-                    { path: "instructor/myClasses", element: <IntructorDashboardPrivet><MyClass /></IntructorDashboardPrivet> }
-                ]
-            },
             { path: "/authentication", element: <AuthPrivetRoute><Authentication /></AuthPrivetRoute> }
         ]
-    }
+    },
+    {
+        path: '/dashboard', element: <PrivetRoute><Dashboard /></PrivetRoute>,
+        children: [
+            { path: "selectedClasses", element: <StudentDashboardPrivet><MySelectedClass /></StudentDashboardPrivet> },
+            { path: "enrolledClasses", element: <StudentDashboardPrivet><MyEnrolledClass /></StudentDashboardPrivet> },
+            { path: "payment", element: <StudentDashboardPrivet><Payment /></StudentDashboardPrivet> },
+            { path: "paymentHistory", element: <StudentDashboardPrivet><PaymentHistory /></StudentDashboardPrivet> },
+            { path: "admin/manageClasses", element: <AdminDashboardPrivet><ManageClasses /></AdminDashboardPrivet> },
+            { path: "admin/manageUsers", element: <AdminDashboardPrivet><ManageUsers /></AdminDashboardPrivet> },
+            { path: "instructor/addClass", element: <IntructorDashboardPrivet><AddClass /></IntructorDashboardPrivet> },
+            { path: "instructor/myClasses", element: <IntructorDashboardPrivet><MyClass /></IntructorDashboardPrivet> }
+        ]
+    },
 ])
