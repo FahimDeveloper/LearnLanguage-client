@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import useTheme from "../../../Hooks/useTheme";
+import useTitlle from "../../../Hooks/useTitlle";
 
 
 const AddClass = () => {
@@ -45,6 +46,7 @@ const AddClass = () => {
                 })
         })
     };
+    useTitlle('Instructor Add Course');
     if (loading) {
         return <Loader />
     }

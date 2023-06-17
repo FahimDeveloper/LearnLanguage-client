@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import Swal from "sweetalert2";
 import useTheme from "../../../Hooks/useTheme";
+import useTitlle from "../../../Hooks/useTitlle";
 
 
 const ManageUsers = () => {
@@ -45,6 +46,7 @@ const ManageUsers = () => {
             }
         })
     }
+    useTitlle('Admin Manage Users')
     if (isLoading) {
         return <Loader />
     }

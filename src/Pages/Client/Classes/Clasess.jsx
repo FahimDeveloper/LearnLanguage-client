@@ -8,8 +8,10 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import Loader from '../../../Components/Shared/Loader/Loader';
 import useTheme from '../../../Hooks/useTheme';
+import useTitlle from '../../../Hooks/useTitlle';
 
 const Clasess = () => {
+    const { user, showError } = useAuth();
     const { isDarkMode } = useTheme();
     const { data: courses = [], isLoading } = useQuery({
         queryKey: ['instructorData'],
@@ -20,7 +22,6 @@ const Clasess = () => {
     })
     const navigate = useNavigate();
     const [, refetch] = useCart();
-    const { user, showError } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
         if (user) {
@@ -62,6 +63,7 @@ const Clasess = () => {
             })
         }
     }
+    useTitlle('All Class');
     if (isLoading) {
         return <Loader />
     }

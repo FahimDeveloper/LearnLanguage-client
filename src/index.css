@@ -33,3 +33,14 @@ body {
 .modalMargin {
     margin: 0 !important;
 }
+
+@media all and (max-width:640px) {
+    .container {
+        width: 90%;
+        margin: auto;
+    }
+
+    .titleStyle {
+        @apply text-3xl
+    }
+}

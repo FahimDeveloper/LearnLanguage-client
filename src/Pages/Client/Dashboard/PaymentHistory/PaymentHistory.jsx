@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
 import Loader from "../../../../Components/Shared/Loader/Loader";
 import { useQuery } from "react-query";
+import useTitlle from "../../../../Hooks/useTitlle";
 
 
 const PaymentHistory = () => {
@@ -16,6 +17,7 @@ const PaymentHistory = () => {
             return res.data
         }
     })
+    useTitlle('Payment History')
     if (isLoading) {
         return <Loader />
     }

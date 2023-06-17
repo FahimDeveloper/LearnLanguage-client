@@ -5,6 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useUser from "../../../Hooks/useUser";
 import { MdOutlineWatchLater } from "react-icons/md";
 import useTheme from "../../../Hooks/useTheme";
+import { Fade } from "react-awesome-reveal";
 
 
 const Card = ({ course, handleAddToCart, status }) => {
@@ -34,7 +35,9 @@ const Card = ({ course, handleAddToCart, status }) => {
             }
             <figure><img src={course.courseBanner} className='w-full md:h-80 h-72 p-2 rounded-xl' alt="class image" /></figure>
             <div className="card-body lg:space-y-1">
-                <h2 className="text-xl font-medium lg:text-2xl truncate">{course.courseName}</h2>
+                <Fade>
+                    <h2 className="text-xl font-medium lg:text-2xl truncate">{course.courseName}</h2>
+                </Fade>
                 <p>{course.description}</p>
                 <div className="flex items-center justify-between lg:text-base">
                     <div className="flex items-center gap-2">

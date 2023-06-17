@@ -4,6 +4,7 @@ import useAuth from '../../Hooks/useAuth';
 import useTheme from "../../Hooks/useTheme";
 import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
+import useTitlle from "../../Hooks/useTitlle";
 
 const SignIn = () => {
     const [showPass, setShowPass] = useState(false)
@@ -26,6 +27,7 @@ const SignIn = () => {
             showError(error.message)
         })
     }
+    useTitlle('Login')
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
             <h2 className='text-3xl font-medium text-center mb-5'>Sign In</h2>

@@ -1,6 +1,6 @@
 import { } from 'react';
 import Navbar from './Components/Shared/Navbar/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, ScrollRestoration } from 'react-router-dom';
 import Footer from './Components/Shared/Footer/Footer';
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
         <Outlet />
       </div>
       <Footer />
+      <ScrollRestoration />
     </>
   );
 };

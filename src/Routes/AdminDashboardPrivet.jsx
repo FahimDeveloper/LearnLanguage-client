@@ -13,7 +13,6 @@ const AdminDashboardPrivet = ({ children }) => {
     if (user && isUser === 'admin') {
         return children
     } else {
-        console.log('hello')
         logOut();
         if (!user) {
             return <Navigate to="/authentication" replace={true} />

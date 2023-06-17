@@ -5,6 +5,7 @@ import Loader from "../../../../Components/Shared/Loader/Loader";
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineWatchLater } from "react-icons/md";
 import useTheme from "../../../../Hooks/useTheme";
+import useTitlle from "../../../../Hooks/useTitlle";
 
 
 const MyEnrolledClass = () => {
@@ -19,6 +20,7 @@ const MyEnrolledClass = () => {
             return res.data
         }
     })
+    useTitlle('Dashboard Enrolled Courses')
     if (isLoading) {
         return <Loader />
     }

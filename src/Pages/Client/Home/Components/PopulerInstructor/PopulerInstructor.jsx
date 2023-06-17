@@ -1,25 +1,26 @@
 import { FaUsers, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import useTheme from "../../../../../Hooks/useTheme";
 import { ImSpinner3 } from "react-icons/im";
+import { Slide, Zoom } from "react-awesome-reveal";
 
 const PopulerInstructor = ({ instructors, loading }) => {
     const { isDarkMode } = useTheme();
     return (
-        <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} py-10`}>
-            <div className="container mx-auto space-y-10">
-                <h2 className='titleStyle'>populer instructor</h2>
+        <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} sm:py-10 py-5`}>
+            <div className="container mx-auto sm:space-y-10 space-y-6">
+                <Slide><h2 className='titleStyle'>populer instructor</h2></Slide>
                 {
                     loading ? <div className={`${isDarkMode ? 'bg-stone-950' : ''} h-96 flex justify-center items-center`}>
                         <ImSpinner3 className='animate-spin text-5xl text-primary' />
                     </div>
-                        : <div className='grid sm:grid-cols-2 gap-5'>
+                        : <div className='grid md:grid-cols-2 gap-5'>
                             {
                                 instructors.slice(0, 6).map(instructor => {
                                     return (
-                                        <div key={instructor._id} className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} card flex lg:flex-row sm:flex-col flex-row bg-base-100 shadow-xl rounded-xl`}>
-                                            <figure className="xl:w-2/5 lg:w-1/3 sm:w-full w-2/5"><img src={instructor.image} className="w-96 object-cover h-72 rounded-s-xl" alt="Movie" /></figure>
-                                            <div className="card-body xl:w-3/5 lg:w-2/3 sm:w-full w-3/5">
-                                                <h2 className="text-3xl font-medium">{instructor.userName}</h2>
+                                        <div key={instructor._id} className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} card flex lg:flex-row md:flex-col sm:flex-row flex-col bg-base-100 shadow-xl rounded-xl`}>
+                                            <figure className="xl:w-2/5 lg:w-1/3 md:w-full sm:w-2/5 w-full"><img src={instructor.image} className="sm:w-96 w-full object-cover sm:h-72 h-96 rounded-s-xl" alt="Movie" /></figure>
+                                            <div className="card-body xl:w-3/5 lg:w-2/3 md:w-full sm:w-3/5 w-full">
+                                                <Zoom><h2 className="text-3xl font-medium">{instructor.userName}</h2></Zoom>
                                                 <p className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore sint maxime eum temporibus voluptates cumque aliquid sunt nihil eos blanditiis.</p>
                                                 <div className="flex justify-between text-sm xl:text-base">
                                                     <div className="flex gap-2">

@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import useCart from "../../../../Hooks/useCart";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../../../Components/Shared/Loader/Loader";
+import useTitlle from "../../../../Hooks/useTitlle";
 
 
 const MySelectedClass = () => {
@@ -42,6 +43,7 @@ const MySelectedClass = () => {
     const handlePaymentPrice = (price, courseId, cartId, courseName) => {
         navigate('/dashboard/payment', { state: { price: price, courseId: courseId, cartId: cartId, courseName: courseName } })
     }
+    useTitlle('Dashboard Selected Courses')
     if (isLoading) {
         return <Loader />
     }

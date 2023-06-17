@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import moment from "moment";
 import useTheme from "../../../Hooks/useTheme";
+import useTitlle from "../../../Hooks/useTitlle";
 
 
 const MyClass = () => {
@@ -15,7 +16,8 @@ const MyClass = () => {
             .then(res => {
                 setMyClassData(res.data)
             })
-    }, [axiosSecure, user])
+    }, [axiosSecure, user]);
+    useTitlle('Instructor Own Classes');
     return (
         <>
             {

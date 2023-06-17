@@ -4,6 +4,7 @@ import axios from 'axios';
 import PopulerCourse from './Components/PopulerCourse/PopulerCourse';
 import PopulerInstructor from './Components/PopulerInstructor/PopulerInstructor';
 import TestimonialSection from './Components/TestimonialSection/TestimonialSection';
+import useTitlle from '../../../Hooks/useTitlle';
 
 const Home = () => {
     const [instructors, setInstructors] = useState([])
@@ -21,6 +22,7 @@ const Home = () => {
                 setCourses(data.data)
             });
     }, [])
+    useTitlle('Home')
     return (
         <>
             <BannerSection />

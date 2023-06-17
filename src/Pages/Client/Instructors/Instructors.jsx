@@ -3,6 +3,7 @@ import { FaUsers } from "react-icons/fa";
 import { useQuery } from "react-query";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import useTheme from "../../../Hooks/useTheme";
+import useTitlle from "../../../Hooks/useTitlle";
 
 const Instructors = () => {
     const { isDarkMode } = useTheme();
@@ -12,7 +13,8 @@ const Instructors = () => {
             const res = await axios('https://assignment-12-server-chi-wheat.vercel.app/instructors');
             return res.data
         }
-    })
+    });
+    useTitlle('Instructors')
     if (isLoading) {
         return <Loader />
     }

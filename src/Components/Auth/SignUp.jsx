@@ -6,6 +6,7 @@ import { updateProfile } from 'firebase/auth';
 import axios from 'axios';
 import useTheme from '../../Hooks/useTheme';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import useTitlle from '../../Hooks/useTitlle';
 
 const SignUp = () => {
     const [showPass, setShowPass] = useState(false)
@@ -56,6 +57,7 @@ const SignUp = () => {
             })
         }
     }
+    useTitlle('Register')
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
             <h2 className='text-3xl font-medium text-center mb-5'>Create new account</h2>

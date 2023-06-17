@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, ScrollRestoration } from 'react-router-dom';
 import useUser from '../Hooks/useUser';
 import Loader from '../Components/Shared/Loader/Loader';
 import { FaHome, FaUserGraduate, FaHistory } from "react-icons/fa";
@@ -23,6 +23,7 @@ const Dashboard = () => {
                     <div className="drawer-content">
                         <div className='flex justify-center'>
                             <Outlet />
+                            <ScrollRestoration />
                         </div>
                         <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                     </div>

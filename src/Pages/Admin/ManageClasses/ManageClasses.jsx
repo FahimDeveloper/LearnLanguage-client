@@ -6,14 +6,16 @@ import { useQuery } from "react-query";
 import Loader from "../../../Components/Shared/Loader/Loader";
 import { useState } from "react";
 import useTheme from "../../../Hooks/useTheme";
+import useTitlle from "../../../Hooks/useTitlle";
 
 const ManageClasses = () => {
     const { isDarkMode } = useTheme();
     const [selectedId, setSelectedId] = useState('');
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const { data: allCourse = [], isLoading, refetch } = useQuery({
         queryKey: ['allCourseData', user.email],
+        enabled: !loading && !!user && !!localStorage.getItem('access-token'),
         queryFn: async () => {
             const res = await axiosSecure(`/allCourse/${user.email}`)
             return res.data
@@ -52,6 +54,7 @@ const ManageClasses = () => {
                 }
             })
     }
+    useTitlle('Admin Manage Course');
     if (isLoading) {
         return <Loader />
     }

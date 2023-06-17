@@ -23,7 +23,7 @@ const Navbar = () => {
                 </div>
                 <div className='flex items-center'>
                     <img className='w-16 h-16' src={logo} alt="" />
-                    <h3 className='text-3xl capitalize font-bold italic'><span className='text-primary'>world</span> talk</h3>
+                    <h3 className='text-3xl capitalize font-bold italic sm:flex hidden'><span className='text-primary'>world</span> talk</h3>
                 </div>
                 <div className='text-xl font-medium md:flex hidden items-center gap-5'>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
@@ -78,7 +78,7 @@ const Navbar = () => {
                 </div>
             </div>
             {
-                isOpen ? <div className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full`}>
+                isOpen ? <div onClick={() => setIsOpen(!isOpen)} className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full`}>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
                     <NavLink to="/instructors" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Instructors</NavLink>
                     <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Classes</NavLink>
