@@ -10,15 +10,11 @@ import { HiBars3CenterLeft } from "react-icons/hi2";
 import useTheme from '../../../Hooks/useTheme';
 
 const Navbar = () => {
-    const [, , refetch] = useUser();
     const { toggleTheme, isDarkMode } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [cartData] = useCart();
     const { user, logOut } = useAuth();
     const [isUser, isLoading] = useUser();
-    if (!isLoading && user && isUser) {
-        refetch();
-    }
     return (
         <div className={`${isDarkMode ? ' bg-stone-950 text-base-100' : 'bg-base-100 border-b'} py-1 border-gray-300 w-full sticky top-0 z-50`}>
             <div className='container mx-auto flex items-center justify-between'>
@@ -82,7 +78,7 @@ const Navbar = () => {
                 </div>
             </div>
             {
-                isOpen ? <div onClick={() => setIsOpen(!isOpen)} className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute bg-white w-full`}>
+                isOpen ? <div onClick={() => setIsOpen(!isOpen)} className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium md:hidden flex flex-col items-center gap-5 py-6 absolute w-full`}>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
                     <NavLink to="/instructors" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Instructors</NavLink>
                     <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Classes</NavLink>

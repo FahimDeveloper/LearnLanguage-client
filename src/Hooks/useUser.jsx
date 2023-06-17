@@ -13,7 +13,10 @@ const useUser = () => {
             return res.data.role
         }
     })
-    return [isUser, isLoading, refetch]
+    if (!isLoading && user && isUser) {
+        refetch();
+    }
+    return [isUser, isLoading]
 };
 
 export default useUser;
