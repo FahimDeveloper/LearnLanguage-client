@@ -34,7 +34,7 @@ const Dashboard = () => {
                                 <h3 className='text-2xl capitalize font-medium'>{isUser} Dashboard</h3>
                                 <div className={`${isDarkMode ? 'bg-stone-700' : 'bg-slate-50'} card card-compact py-5 w-72 bg-slate-50 shadow-xl`}>
                                     <div className="text-center space-y-1">
-                                        <img src={user?.photoURL} className='w-22 h-22 rounded-full mx-auto' alt="user image" />
+                                        <img src={user?.photoURL} className='w-24 h-24 object-cover rounded-full mx-auto' alt="user image" />
                                         <h2 className="text-lg">{user?.displayName}</h2>
                                         <p className='text-sm'>{user?.email}</p>
                                         <button onClick={logOut} className="btn btn-primary btn-sm w-24">log out</button>

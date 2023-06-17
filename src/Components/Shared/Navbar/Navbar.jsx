@@ -62,7 +62,7 @@ const Navbar = () => {
                                         </div>
                                     </label>
                                     <div tabIndex={0} className={`dropdown-content card py-5 mt-3 p-2 shadow bg-base-100 rounded-box w-80 ${isDarkMode ? 'bg-stone-800' : 'bg-base-100'}`}>
-                                        <img className='rounded-full h-24 w-24 object-contain mx-auto cursor-pointer' src={user?.photoURL ? user?.photoURL : 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg'} alt="user image" />
+                                        <img className='rounded-full h-24 w-24 object-cover mx-auto cursor-pointer' src={user?.photoURL ? user?.photoURL : 'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?cs=srgb&dl=pexels-italo-melo-2379005.jpg&fm=jpg'} alt="user image" />
                                         <div className='text-center space-y-1'>
                                             <h3 className='text-xl font-medium'>{user.displayName}</h3>
                                             <p className='text-sm'>{user.email}</p>
