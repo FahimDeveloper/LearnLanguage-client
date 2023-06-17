@@ -15,6 +15,7 @@ const Navbar = () => {
     const [cartData] = useCart();
     const { user, logOut } = useAuth();
     const [isUser, isLoading] = useUser();
+
     return (
         <div className={`${isDarkMode ? ' bg-stone-950 text-base-100' : 'bg-base-100 border-b'} py-1 border-gray-300 w-full sticky top-0 z-50`}>
             <div className='container mx-auto flex items-center justify-between'>

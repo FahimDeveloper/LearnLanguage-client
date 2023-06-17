@@ -13,8 +13,8 @@ const useUser = () => {
             return res.data.role
         }
     })
-    if (!isLoading && user && isUser) {
-        refetch();
+    if (!loading && !!user && !!localStorage.getItem('access-token') && !isUser) {
+        refetch()
     }
     return [isUser, isLoading]
 };
