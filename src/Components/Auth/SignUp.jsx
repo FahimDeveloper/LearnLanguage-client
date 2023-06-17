@@ -8,14 +8,15 @@ import useTheme from '../../Hooks/useTheme';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useTitlle from '../../Hooks/useTitlle';
 
-const SignUp = () => {
+const SignUp = ({ setLoading }) => {
     const [showPass, setShowPass] = useState(false)
-    const [showCmPass, setShowCmPass] = useState(false)
+    const [showCmPass, setShowCmPass] = useState(false);
     const { isDarkMode } = useTheme();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const { signUp, showError } = useAuth()
     const onSubmit = data => {
         if (data.password === data.confirmPassword) {
+            setLoading(true)
             signUp(data.userEmail, data.password).then((result) => {
                 const user = result.user;
                 if (user) {
@@ -31,6 +32,7 @@ const SignUp = () => {
                         axios.post(`https://assignment-12-server-chi-wheat.vercel.app/addUser/`, userData)
                             .then(data => {
                                 if (data.data.insertedId) {
+                                    setLoading(false)
                                     Swal.fire({
                                         position: 'center',
                                         icon: 'success',
@@ -40,13 +42,16 @@ const SignUp = () => {
                                     })
                                 }
                             }).catch(error => {
+                                setLoading(false)
                                 showError(error.message)
                             })
                     }).catch(error => {
+                        setLoading(false)
                         showError(error.message)
                     })
                 }
             }).catch(error => {
+                setLoading(false)
                 showError(error.message)
             })
         } else {
@@ -64,7 +69,8 @@ const SignUp = () => {
             <input type="text" placeholder="Enter your name" {...register("userName")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full`} required />
             <input type="email" placeholder="Enter your email" {...register("userEmail")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full`} required />
             <div className="relative">
-                <input type={`${showPass ? 'text' : 'password'}`} placeholder="Enter your password" {...register("password")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full z-10`} />
+                <input type={`${showPass ? 'text' : 'password'}`} placeholder="Enter your password" {...register("password", { pattern: /^(?=.*[A-Z])(?=.*[!@#$&*]).{6,}$/ })} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full z-10`} />
+                {errors.password && <span className="text-red-600">This password should be 6 character. At least one uppercase and one special charecter</span>}
                 <div className="absolute top-4 right-2 z-50 text-black text-xl" onClick={() => setShowPass(!showPass)}>
                     {
                         showPass ?
@@ -74,7 +80,7 @@ const SignUp = () => {
                 </div>
             </div>
             <div className="relative">
-                <input type={`${showCmPass ? 'text' : 'password'}`} placeholder="Enter your password" {...register("password")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full z-10`} />
+                <input type={`${showCmPass ? 'text' : 'password'}`} placeholder="Enter your password" {...register("confirmPassword")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full z-10`} />
                 <div className="absolute top-4 right-2 z-50 text-black text-xl" onClick={() => setShowCmPass(!showCmPass)}>
                     {
                         showCmPass ?
@@ -85,7 +91,7 @@ const SignUp = () => {
             </div>
             <input type="url" placeholder="image url" {...register("image")} className={`${isDarkMode ? 'text-stone-600' : ''} input input-bordered w-full`} required />
             <button className='btn btn-primary px-16 rounded-full w-full' type='submit'>Sign up</button>
-        </form>
+        </form >
     );
 };
 

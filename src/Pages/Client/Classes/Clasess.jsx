@@ -23,9 +23,9 @@ const Clasess = () => {
     const navigate = useNavigate();
     const [, refetch] = useCart();
     const [axiosSecure] = useAxiosSecure();
-    const handleAddToCart = ({ _id, courseName, courseBanner, instructorName }) => {
+    const handleAddToCart = ({ _id, courseName, price, courseBanner, instructorName }) => {
         if (user) {
-            const cartCourse = { courseId: _id, courseName: courseName, instructorName: instructorName, userEmail: user.email, courseBanner: courseBanner }
+            const cartCourse = { courseId: _id, courseName: courseName, price: price, instructorName: instructorName, userEmail: user.email, courseBanner: courseBanner }
             axiosSecure.post(`/addToCart/${user.email}`, cartCourse)
                 .then(data => {
                     if (data.data.insertedId) {

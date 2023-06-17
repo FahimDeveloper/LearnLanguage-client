@@ -28,11 +28,13 @@ const MySelectedClass = () => {
                         console.log(data.data)
                         if (data.data.deletedCount > 0) {
                             refetch()
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'selected course has been deleted.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                         }
                     }).catch(error => {
                         showError(error.message)
@@ -83,7 +85,7 @@ const MySelectedClass = () => {
                                                     <td>{course.instructorName}</td>
                                                     <td>{course.price}</td>
                                                     <td><button onClick={() => handleDelete(course._id)} className="btn btn-error btn-sm">delete</button></td>
-                                                    <td><button onClick={() => handlePaymentPrice(45, course.courseId, course._id, course.courseName)} className="btn btn-primary btn-sm">pay</button></td>
+                                                    <td><button onClick={() => handlePaymentPrice(course.price, course.courseId, course._id, course.courseName)} className="btn btn-primary btn-sm">pay</button></td>
                                                 </tr>
                                             )
                                         })

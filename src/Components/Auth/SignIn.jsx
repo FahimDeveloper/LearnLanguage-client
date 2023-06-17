@@ -6,15 +6,17 @@ import { useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import useTitlle from "../../Hooks/useTitlle";
 
-const SignIn = () => {
-    const [showPass, setShowPass] = useState(false)
+const SignIn = ({ setLoading }) => {
+    const [showPass, setShowPass] = useState(false);
     const { isDarkMode } = useTheme();
     const { signIn, showError } = useAuth()
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
+        setLoading(true)
         signIn(data.userEmail, data.password).then((result) => {
             const user = result.user;
             if (user) {
+                setLoading(false)
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -24,10 +26,11 @@ const SignIn = () => {
                 })
             }
         }).catch(error => {
+            setLoading(false)
             showError(error.message)
         })
     }
-    useTitlle('Login')
+    useTitlle('Login');
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-3'>
             <h2 className='text-3xl font-medium text-center mb-5'>Sign In</h2>

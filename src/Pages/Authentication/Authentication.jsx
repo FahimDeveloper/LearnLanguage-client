@@ -8,9 +8,11 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useTheme from '../../Hooks/useTheme';
+import Loader from '../../Components/Shared/Loader/Loader';
 
 const Authentication = () => {
     const { isDarkMode } = useTheme();
+    const [loading, setLoading] = useState(false)
     const { continueWithGoogle, showError } = useAuth();
     const [isNew, setIsNew] = useState(false);
     const handleGoogleLogin = () => {
@@ -43,6 +45,9 @@ const Authentication = () => {
                 showError(error.message)
             })
     }
+    if (loading) {
+        return <Loader />
+    }
     return (
         <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'}`}>
             <div className='container mx-auto grid grid-cols-5 gap-10 items-center h-screen'>
@@ -51,7 +56,7 @@ const Authentication = () => {
                 </div>
                 <div className={`border border-primary px-16 py-10 rounded-2xl space-y-5 col-span-2 ${isDarkMode ? 'bg-stone-800' : 'bg-base-100'}`}>
                     {
-                        isNew ? <SignUp /> : <SignIn />
+                        isNew ? <SignUp setLoading={setLoading} /> : <SignIn setLoading={setLoading} />
                     }
                     <div onClick={handleGoogleLogin} className='flex gap-2 items-center cursor-pointer border rounded-full justify-center py-1'>
                         Continue With Google <FcGoogle className='text-3xl' />

@@ -18,6 +18,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [axiosSecure] = useAxiosSecure();
+    const [disabled, setDisabled] = useState(false)
     useEffect(() => {
         axiosSecure.post('/create-payment-intent', { price })
             .then(res => {
@@ -25,12 +26,15 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             })
     }, [axiosSecure, price]);
     const handleSubmit = async (event) => {
+        setDisabled(true);
         event.preventDefault();
         if (!stripe || !elements) {
+            setDisabled(false)
             return;
         }
         const card = elements.getElement(CardElement);
         if (card == null) {
+            setDisabled(false)
             return;
         }
         const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -38,6 +42,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             card,
         });
         if (error) {
+            setDisabled(false)
             console.log('[error]', error);
         } else {
             console.log('[PaymentMethod]', paymentMethod);
@@ -55,6 +60,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
             },
         );
         if (confirmError) {
+            setDisabled(false)
             console.log(confirmError)
         }
         console.log('[PaymentIntent]', paymentIntent);
@@ -113,7 +119,7 @@ const CheckoutForm = ({ price, courseId, cartId, courseName }) => {
                     },
                 }}
             />
-            <button type="submit" className='btn btn-primary' disabled={!stripe || !clientSecret}>
+            <button type="submit" className='btn btn-primary' disabled={!stripe || !clientSecret || disabled}>
                 Pay
             </button>
         </form>
