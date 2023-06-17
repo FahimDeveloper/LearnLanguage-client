@@ -59,7 +59,7 @@ const ManageClasses = () => {
         return <Loader />
     }
     return (
-        <div className="py-10 space-y-16">
+        <div className="py-10 px-5 space-y-16">
             <h2 className="text-4xl font-medium text-center">Manage All Course</h2>
             <div className="grid grid-cols-2 gap-3">
                 {

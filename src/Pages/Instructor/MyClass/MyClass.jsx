@@ -8,6 +8,7 @@ import useTitlle from "../../../Hooks/useTitlle";
 
 const MyClass = () => {
     const { isDarkMode } = useTheme();
+    const [feedback, setFeedback] = useState('');
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const [myClassData, setMyClassData] = useState([])
@@ -25,10 +26,10 @@ const MyClass = () => {
                     <div className="p-10 w-full space-y-10">
                         <h2 className="text-4xl font-medium text-center">My Course</h2>
                         <div className="overflow-x-auto">
-                            <table className="table text-lg">
+                            <table className="table">
                                 {/* head */}
-                                <thead className="text-center">
-                                    <tr className="text-base bg-primary text-base-100">
+                                <thead className="text-center text-sm">
+                                    <tr className="bg-primary text-base-100">
                                         <th>#</th>
                                         <th>Course Name</th>
                                         <th>Available Seat</th>
@@ -40,7 +41,7 @@ const MyClass = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody className="text-center">
+                                <tbody className="text-center text-base">
                                     {
                                         myClassData?.map((course, index) => {
                                             return (
@@ -51,7 +52,7 @@ const MyClass = () => {
                                                     <td>{course.courseDuration} h</td>
                                                     <td>{moment(course.date).format("dd, MMM Do YY")}</td>
                                                     <td>${course.price}</td>
-                                                    <td><button className="btn btn-xs btn-info capitalize" onClick={() => window.my_modal_3.showModal()}>see feedback</button></td>
+                                                    <td><label onClick={() => setFeedback(course.feedback)} htmlFor="my_modal_6" className="btn btn-xs btn-info capitalize">see feedback</label></td>
                                                     <td>
                                                         <p
                                                             className={
@@ -60,17 +61,20 @@ const MyClass = () => {
                                                         </p>
                                                     </td>
                                                     <td><button className="btn btn-primary btn-sm">update</button></td>
-                                                    <dialog id="my_modal_3" className="modal">
-                                                        <form method="dialog" className={`modal-box ${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`}>
-                                                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                                                            <h3 className="font-bold text-lg">Feedback From Admin</h3>
-                                                            <p className="py-4">{course.feedback !== "" ? course.feedback : "You have no feedback for this course"}</p>
-                                                        </form>
-                                                    </dialog>
                                                 </tr>
                                             )
                                         })
                                     }
+                                    <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+                                    <div className="modal">
+                                        <div className={`modal-box ${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`}>
+                                            <div className="modal-action">
+                                                <label htmlFor="my_modal_6" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                                            </div>
+                                            <h3 className="font-bold text-lg">Feedback From Admin</h3>
+                                            <p className="py-4">{feedback !== "" ? feedback : "You have no feedback for this course"}</p>
+                                        </div>
+                                    </div>
                                 </tbody>
                             </table>
                         </div>

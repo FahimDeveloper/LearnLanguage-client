@@ -27,7 +27,8 @@ const SignUp = ({ setLoading }) => {
                             userName: data.userName,
                             userEmail: data.userEmail,
                             image: data.image,
-                            role: 'student'
+                            role: 'student',
+                            user: user,
                         }
                         axios.post(`https://assignment-12-server-chi-wheat.vercel.app/addUser/`, userData)
                             .then(data => {
