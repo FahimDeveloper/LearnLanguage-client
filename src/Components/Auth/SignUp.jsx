@@ -9,7 +9,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import useTitlle from '../../Hooks/useTitlle';
 
 const SignUp = ({ setLoading }) => {
-    const [showPass, setShowPass] = useState(false)
+    const [showPass, setShowPass] = useState(false);
     const [showCmPass, setShowCmPass] = useState(false);
     const { isDarkMode } = useTheme();
     const { register, handleSubmit, formState: { errors } } = useForm();

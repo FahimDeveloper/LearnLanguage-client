@@ -23,7 +23,7 @@ const Card = ({ course, handleAddToCart, status }) => {
             }
         }
         if (!isLoading) {
-            if (isUser === "admin" || isUser === "instructor") {
+            if (isUser === "admin" || isUser === "instructor" || course.availableSeat < 1) {
                 setUnUsed(true);
             }
         }
