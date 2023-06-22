@@ -8,14 +8,20 @@ import { useState } from 'react';
 import logo from '../../../assets/images/logo.png'
 import { HiBars3CenterLeft } from "react-icons/hi2";
 import useTheme from '../../../Hooks/useTheme';
+import { useEffect } from 'react';
 
 const Navbar = () => {
     const { toggleTheme, isDarkMode } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
     const [cartData] = useCart();
     const { user, logOut } = useAuth();
-    const [isUser, isLoading] = useUser();
-
+    const [isUser, isLoading, refetch] = useUser();
+    useEffect(() => {
+        if (user?.email && !isLoading && isUser) {
+            console.log('h')
+            refetch();
+        }
+    }, [user, isUser, isLoading, refetch])
     return (
         <div className={`${isDarkMode ? ' bg-stone-950 text-base-100' : 'bg-base-100 border-b'} py-1 border-gray-300 w-full sticky top-0 z-50`}>
             <div className='container mx-auto flex items-center justify-between'>
