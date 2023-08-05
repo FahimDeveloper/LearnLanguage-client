@@ -1,0 +1,77 @@
+[
+    {
+        "name": "English",
+        "country": "United Kingdom",
+        "flag": "https://i.ibb.co/SK1Y7R6/united-kingdom.webp"
+    },
+    {
+        "name": "Spanish",
+        "country": "Spain",
+        "flag": "https://i.ibb.co/xHW0JFk/spain.png"
+    },
+    {
+        "name": "Chinese",
+        "country": "China",
+        "flag": "https://i.ibb.co/MkLVzJP/china.png"
+    },
+    {
+        "name": "Hindi",
+        "country": "India",
+        "flag": "https://i.ibb.co/JtKwmLG/india.webp"
+    },
+    {
+        "name": "Arabic",
+        "country": "Saudi Arabia",
+        "flag": "https://i.ibb.co/Yfb6yg3/soudi.png"
+    },
+    {
+        "name": "French",
+        "country": "France",
+        "flag": "https://i.ibb.co/gmmNpCT/franch.webp"
+    },
+    {
+        "name": "Russian",
+        "country": "Russia",
+        "flag": "https://i.ibb.co/c6XJL2W/russia.webp"
+    },
+    {
+        "name": "Portuguese",
+        "country": "Portugal",
+        "flag": "https://i.ibb.co/VpzRQRC/portuguese.jpg"
+    },
+    {
+        "name": "Bengali",
+        "country": "Bangladesh",
+        "flag": "https://i.ibb.co/Mkrvpdy/bangladesh.png"
+    },
+    {
+        "name": "Japanese",
+        "country": "Japan",
+        "flag": "https://i.ibb.co/P1QZysY/japan.png"
+    },
+    {
+        "name": "German",
+        "country": "Germany",
+        "flag": "https://i.ibb.co/XXVcm1d/German.webp"
+    },
+    {
+        "name": "Korean",
+        "country": "South Korea",
+        "flag": "https://i.ibb.co/WV6vfHJ/South-Korea.webp"
+    },
+    {
+        "name": "Italian",
+        "country": "Italy",
+        "flag": "https://i.ibb.co/k28zScG/Italy.webp"
+    },
+    {
+        "name": "Turkish",
+        "country": "Turkey",
+        "flag": "https://i.ibb.co/VMpKrhk/turkey.png"
+    },
+    {
+        "name": "Vietnamese",
+        "country": "Vietnam",
+        "flag": "https://i.ibb.co/KqP22sN/Vietnam.png"
+    }
+]
