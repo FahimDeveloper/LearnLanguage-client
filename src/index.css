@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .titleStyle {
-    @apply text-center text-5xl font-bold uppercase italic
+    @apply text-center text-4xl font-bold uppercase italic
 }
 
 body {
@@ -32,6 +32,18 @@ body {
 
 .modalMargin {
     margin: 0 !important;
+}
+
+.chooseLogo {
+    @apply bg-gray-100 text-black w-32 h-32 flex justify-center mx-auto items-center rounded-full
+}
+
+.chooseCard {
+    @apply card shadow-lg h-80
+}
+
+.chooseCard:hover .chooseLogo {
+    @apply ease-linear duration-200 bg-primary text-white -mt-3
 }
 
 @media all and (max-width:640px) {

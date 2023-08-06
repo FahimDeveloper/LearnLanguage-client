@@ -6,6 +6,7 @@ import PopulerInstructor from './Components/PopulerInstructor/PopulerInstructor'
 import TestimonialSection from './Components/TestimonialSection/TestimonialSection';
 import useTitlle from '../../../Hooks/useTitlle';
 import Languages from './Components/Languages/Languages';
+import WhyWorldTalk from './Components/WhyWorldTalk/WhyWorldTalk';
 
 const Home = () => {
     const [instructors, setInstructors] = useState([]);
@@ -35,6 +36,7 @@ const Home = () => {
         <>
             <BannerSection />
             <Languages countries={lanuages} />
+            <WhyWorldTalk />
             <PopulerCourse courses={courses} loading={loading} />
             <PopulerInstructor instructors={instructors} loading={loading} />
             <TestimonialSection />
