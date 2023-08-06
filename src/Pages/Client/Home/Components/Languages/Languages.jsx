@@ -12,7 +12,7 @@ const Languages = ({ countries }) => {
                         countries.map((country, index) => {
                             return (
                                 <div key={index} className="text-center mx-3">
-                                    <img src={country.flag} className="h-24 w-40 object-cover border" alt="" />
+                                    <img src={country.flag} className="sm:h-24 h-16 sm:w-40 w-32 object-cover border" alt="" />
                                     <p className="font-semibold">{country.name}</p>
                                 </div>
                             )

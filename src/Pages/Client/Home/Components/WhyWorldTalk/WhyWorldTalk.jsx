@@ -10,12 +10,12 @@ const WhyWorldTalk = () => {
     return (
         <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} py-5 space-y-10`}>
             <h2 className="titleStyle">Why people choose us</h2>
-            <div className="container mx-auto grid grid-cols-2 gap-5 items-center">
+            <div className="container mx-auto grid xl:grid-cols-2 gap-5 items-center">
                 <div>
                     <Lottie animationData={animation} loop={true} />
                 </div>
-                <div className="grid grid-cols-2 gap-5">
-                    <div className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} chooseCard mt-5`}>
+                <div className="grid sm:grid-cols-2 gap-5">
+                    <div className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} chooseCard xl:mt-5`}>
                         <div className="card-body text-center">
                             <div className="chooseLogo">
                                 <PiCertificateLight className="text-6xl" />
@@ -42,7 +42,7 @@ const WhyWorldTalk = () => {
                             <p>Enhance your professional and academic CV as you travel the world</p>
                         </div>
                     </div>
-                    <div className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} chooseCard -mt-5`}>
+                    <div className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} chooseCard xl:-mt-5`}>
                         <div className="card-body text-center">
                             <div className="chooseLogo">
                                 <MdSupportAgent className="text-6xl" />

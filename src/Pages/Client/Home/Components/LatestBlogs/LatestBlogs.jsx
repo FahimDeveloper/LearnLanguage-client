@@ -13,7 +13,7 @@ const LatestBlogs = () => {
         <div className={`${isDarkMode ? "bg-stone-950 text-base-100" : "bg-base-100"}`}>
             <div className="container mx-auto py-5 space-y-10">
                 <h2 className="titleStyle">Latest blog & articles</h2>
-                <div className="grid grid-cols-4 gap-5">
+                <div className="grid lg:grid-cols-4 sm:grid-cols-2 xl:gap-5 lg:gap-3 md:gap-10 sm:gap-7 gap-5">
                     {
                         blogs.slice(0, 4).map(blog => <BlogCard key={blog._id} blog={blog} />)
                     }

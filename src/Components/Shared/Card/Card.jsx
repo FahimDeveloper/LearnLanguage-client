@@ -83,7 +83,7 @@ const Card = ({ course, status }) => {
                 <Fade>
                     <h2 className="text-xl font-medium lg:text-2xl truncate">{course.courseName}</h2>
                 </Fade>
-                <p>{course.description?.slice(0, 80)}...</p>
+                <p>{course.description?.slice(0, 70)}...</p>
                 <div className="flex items-center justify-between lg:text-base">
                     <div className="flex items-center gap-2">
                         <FaUsers className="text-2xl" />
