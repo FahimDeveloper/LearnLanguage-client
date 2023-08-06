@@ -6,15 +6,20 @@ import useUser from "../../../Hooks/useUser";
 import { MdOutlineWatchLater } from "react-icons/md";
 import useTheme from "../../../Hooks/useTheme";
 import { Fade } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
-const Card = ({ course, handleAddToCart, status }) => {
+const Card = ({ course, status }) => {
     const { isDarkMode } = useTheme();
     const [selectedClass, setSelectedClass] = useState(false)
     const [unUsed, setUnUsed] = useState(false)
-    const [cartData] = useCart();
-    const { user } = useAuth();
+    const [cartData, refetch] = useCart();
+    const { user, showError } = useAuth();
     const [isUser, isLoading] = useUser();
+    const navigate = useNavigate();
+    const [axiosSecure] = useAxiosSecure();
     useEffect(() => {
         const matchClass = cartData.find(cart => cart.courseId === course._id)
         if (matchClass) {
@@ -27,11 +32,51 @@ const Card = ({ course, handleAddToCart, status }) => {
                 setUnUsed(true);
             }
         }
-    }, [cartData, course, user, isLoading, isUser])
+    }, [cartData, course, user, isLoading, isUser]);
+    const handleAddToCart = ({ _id, courseName, price, courseBanner, instructorName }) => {
+        if (user) {
+            const cartCourse = { courseId: _id, courseName: courseName, price: price, instructorName: instructorName, userEmail: user.email, courseBanner: courseBanner }
+            axiosSecure.post(`/addToCart/${user.email}`, cartCourse)
+                .then(data => {
+                    if (data.data.insertedId) {
+                        refetch();
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Course Add In Cart',
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    } else if (data.data.enrolled) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Enrolled',
+                            text: 'You have already enrolled this course',
+                        })
+                    }
+                }).catch(error => {
+                    showError(error.message)
+                })
+        } else {
+            Swal.fire({
+                title: 'Have to login',
+                text: "You won't be able to cart this item! Please login first",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Go for login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/authentication')
+                }
+            })
+        }
+    }
     return (
         <div className={`card card-compact shadow-xl relative ${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
             {
-                status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : ''
+                status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : <div className="badge badge-success absolute top-3 left-3">{course.courseFor}</div>
             }
             <figure><img src={course.courseBanner} className='w-full md:h-80 h-72 p-2 rounded-xl' alt="class image" /></figure>
             <div className="card-body lg:space-y-1">

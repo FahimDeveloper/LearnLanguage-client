@@ -15,7 +15,7 @@ const PopulerInstructor = ({ instructors, loading }) => {
                     </div>
                         : <div className='grid md:grid-cols-2 gap-5'>
                             {
-                                instructors.slice(0, 6).map(instructor => {
+                                instructors.slice(0, 4).map(instructor => {
                                     return (
                                         <div key={instructor._id} className={`${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'} card flex lg:flex-row md:flex-col sm:flex-row flex-col bg-base-100 shadow-xl rounded-xl`}>
                                             <figure className="xl:w-2/5 lg:w-1/3 md:w-full sm:w-2/5 w-full"><img src={instructor.image} className="sm:w-96 w-full object-cover sm:h-72 h-96 rounded-s-xl" alt="Movie" /></figure>

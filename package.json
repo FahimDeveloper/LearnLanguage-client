@@ -29,6 +29,7 @@
     "react-rating": "^2.0.5",
     "react-router-dom": "^6.12.1",
     "react-slick": "^0.29.0",
+    "react-tabs": "^6.0.2",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.12",
     "swiper": "^9.4.1"
