@@ -103,7 +103,7 @@ const Card = ({ course, status }) => {
                     </div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass || unUsed ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "add to cart"}</button>
+                    <button onClick={() => handleAddToCart(course)} disabled={selectedClass || unUsed} className={`btn ${selectedClass || unUsed ? `disabled ${isDarkMode ? 'disabled:bg-stone-700 disabled:text-base-100' : 'disabled:bg-stone-200 disabled:text-stone-900'}` : 'btn-primary'}`}>{selectedClass ? 'Already Added' : isUser === "admin" || isUser === "instructor" || course.availableSeat < 1 ? "not available" : "enroll now"}</button>
                 </div>
             </div>
         </div>

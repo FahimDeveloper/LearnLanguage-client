@@ -8,6 +8,7 @@ import useTitlle from '../../../Hooks/useTitlle';
 import Languages from './Components/Languages/Languages';
 import WhyWorldTalk from './Components/WhyWorldTalk/WhyWorldTalk';
 import ChooseLanguage from './Components/ChooseLanguage/ChooseLanguage';
+import LatestBlogs from './Components/LatestBlogs/LatestBlogs';
 
 const Home = () => {
     const [instructors, setInstructors] = useState([]);
@@ -38,10 +39,11 @@ const Home = () => {
             <BannerSection />
             <Languages countries={lanuages} />
             <WhyWorldTalk />
-            <ChooseLanguage languages={courses} />
+            <ChooseLanguage />
             <PopulerCourse courses={courses} loading={loading} />
             <PopulerInstructor instructors={instructors} loading={loading} />
             <TestimonialSection />
+            <LatestBlogs />
         </>
     );
 };

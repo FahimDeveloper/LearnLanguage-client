@@ -35,7 +35,7 @@ const PopulerInstructor = ({ instructors, loading }) => {
                                                         <FaInstagram className="text-red-400 cursor-pointer" />
                                                         <FaTwitter className="text-sky-400 cursor-pointer" />
                                                     </div>
-                                                    <button className="btn btn-primary">see all course</button>
+                                                    <button className="btn btn-primary">see courses</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,6 +44,9 @@ const PopulerInstructor = ({ instructors, loading }) => {
                             }
                         </div>
                 }
+                <div className="text-center">
+                    <button className="btn btn-primary px-10">sell all instructor</button>
+                </div>
             </div>
         </div>
     );

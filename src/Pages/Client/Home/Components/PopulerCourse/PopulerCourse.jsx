@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import Card from '../../../../../Components/Shared/Card/Card';
 import useTheme from '../../../../../Hooks/useTheme';
 import { ImSpinner3 } from "react-icons/im";
@@ -22,6 +22,10 @@ const PopulerCourse = ({ courses, loading }) => {
                         <Swiper
                             slidesPerView={1}
                             spaceBetween={10}
+                            autoplay={{
+                                delay: 1500,
+                                disableOnInteraction: false,
+                            }}
                             pagination={{
                                 clickable: true,
                             }}
@@ -39,7 +43,7 @@ const PopulerCourse = ({ courses, loading }) => {
                                     spaceBetween: 10,
                                 },
                             }}
-                            modules={[Pagination]}
+                            modules={[Autoplay, Pagination]}
                             className="mySwiper lg:h-[610px] h-[550px]"
                         >
                             {

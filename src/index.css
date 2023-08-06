@@ -35,7 +35,7 @@ body {
 }
 
 .chooseLogo {
-    @apply bg-gray-100 text-black w-32 h-32 flex justify-center mx-auto items-center rounded-full
+    @apply bg-gray-100 duration-200 text-black w-32 h-32 flex justify-center mx-auto items-center rounded-full
 }
 
 .chooseCard {
@@ -43,7 +43,7 @@ body {
 }
 
 .chooseCard:hover .chooseLogo {
-    @apply ease-linear duration-200 bg-primary text-white -mt-3
+    @apply bg-primary text-white -mt-3
 }
 
 @media all and (max-width:640px) {
