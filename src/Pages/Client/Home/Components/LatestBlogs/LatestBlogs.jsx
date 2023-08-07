@@ -2,6 +2,7 @@ import BlogCard from "../../../../../Components/Shared/BlogCard/BlogCard";
 import useBlogData from "../../../../../Hooks/useBlogData";
 import { ImSpinner3 } from "react-icons/im";
 import useTheme from "../../../../../Hooks/useTheme";
+import { Link } from "react-router-dom";
 
 const LatestBlogs = () => {
     const { isDarkMode } = useTheme()
@@ -19,7 +20,7 @@ const LatestBlogs = () => {
                     }
                 </div>
                 <div className="text-center">
-                    <button className="btn btn-primary px-10">see more</button>
+                    <Link to="blogs"><button className="btn btn-primary px-10">see more</button></Link>
                 </div>
             </div>
         </div>

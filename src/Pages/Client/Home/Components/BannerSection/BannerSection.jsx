@@ -12,7 +12,7 @@ import animation3 from "../../../../../assets/HomeSliderJsons/animation3.json"
 const BannerSection = () => {
     const { isDarkMode } = useTheme();
     return (
-        <div className={`${isDarkMode ? 'bg-stone-950' : 'bg-base-100'} md:pb-5`}>
+        <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} md:pb-5`}>
             <div className="lg:container lg:px-0 px-5 mx-auto">
                 <Swiper
                     centeredSlides={true}

@@ -21,6 +21,7 @@ import AdminDashboardPrivet from "./AdminDashboardPrivet";
 import IntructorDashboardPrivet from "./IntructorDashboardPrivet";
 import Payment from "../Pages/Client/Dashboard/Payment/payment";
 import Error from "../Pages/Error/Error";
+import Blogs from "../Pages/Client/Blogs/Blogs";
 export const router = createBrowserRouter([
     {
         path: '/', element: <App />,
@@ -28,7 +29,8 @@ export const router = createBrowserRouter([
         children: [
             { path: "/", element: <Home /> },
             { path: "/instructors", element: <Instructors /> },
-            { path: "/allClasses", element: <Clasess /> },
+            { path: "/courses", element: <Clasess /> },
+            { path: "/blogs", element: <Blogs /> },
             { path: "/authentication", element: <AuthPrivetRoute><Authentication /></AuthPrivetRoute> }
         ]
     },

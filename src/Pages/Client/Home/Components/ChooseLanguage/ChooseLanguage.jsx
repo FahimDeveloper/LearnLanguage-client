@@ -4,6 +4,7 @@ import SingleLanguage from './SingleLanguage';
 import useAllCourse from '../../../../../Hooks/useAllCourse';
 import { ImSpinner3 } from "react-icons/im";
 import useTheme from '../../../../../Hooks/useTheme';
+import { Link } from 'react-router-dom';
 
 const ChooseLanguage = () => {
     const { isLoading, courses } = useAllCourse();
@@ -28,7 +29,7 @@ const ChooseLanguage = () => {
                     </Tabs>
                 </div>
                 <div className='text-center'>
-                    <button className='btn btn-primary px-10'>see all course</button>
+                    <Link to="/courses"><button className='btn btn-primary px-10'>see all course</button></Link>
                 </div>
             </div>
         </div>

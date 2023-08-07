@@ -33,7 +33,7 @@ const Navbar = () => {
                 </div>
                 <div className='text-xl font-medium lg:flex hidden items-center gap-7'>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
-                    <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Courses</NavLink>
+                    <NavLink to="/courses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Courses</NavLink>
                     <NavLink to="/contactUs" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Contact us</NavLink>
                     <NavLink to="/blogs" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Blogs</NavLink>
                     {
@@ -87,7 +87,7 @@ const Navbar = () => {
             {
                 isOpen ? <div onClick={() => setIsOpen(!isOpen)} className={`${isDarkMode ? 'bg-stone-950' : "bg-base-100"} text-xl font-medium lg:hidden flex flex-col items-center gap-5 py-6 absolute w-full`}>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Home</NavLink>
-                    <NavLink to="/allClasses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Courses</NavLink>
+                    <NavLink to="/courses" className={({ isActive }) => isActive ? 'active' : 'nonActive'}>Courses</NavLink>
                     {
                         user && !isLoading ?
                             <NavLink

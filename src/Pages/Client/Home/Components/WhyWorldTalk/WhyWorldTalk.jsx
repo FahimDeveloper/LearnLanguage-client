@@ -4,12 +4,14 @@ import animation from "../../../../../assets/ChooseUsAnimation.json"
 import { PiCertificateLight, PiStarThin } from 'react-icons/pi';
 import { MdSupportAgent } from 'react-icons/md';
 import { IoNewspaperOutline } from 'react-icons/io5';
+import MoreInfo from "../MoreInfo/MoreInfo";
 
 const WhyWorldTalk = () => {
     const { isDarkMode } = useTheme();
     return (
         <div className={`${isDarkMode ? 'bg-stone-950 text-base-100' : 'bg-base-100'} py-5 space-y-10`}>
             <h2 className="titleStyle">Why people choose us</h2>
+            <MoreInfo />
             <div className="container mx-auto grid xl:grid-cols-2 gap-5 items-center">
                 <div>
                     <Lottie animationData={animation} loop={true} />

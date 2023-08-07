@@ -76,7 +76,7 @@ const Card = ({ course, status }) => {
     return (
         <div className={`card card-compact shadow-xl relative ${isDarkMode ? 'bg-stone-800 text-base-100' : 'bg-base-100'}`} title={`${selectedClass ? "You can't seletect because you have already added" : unUsed ? `You can't seletect because you are ${isUser}` : ''}`}>
             {
-                status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : <div className="badge badge-success absolute top-3 left-3">{course.courseFor}</div>
+                status ? <div className="badge badge-warning absolute top-3 left-3">{status}</div> : <div className="badge badge-warning absolute top-3 left-3">{course.courseFor}</div>
             }
             <figure><img src={course.courseBanner} className='w-full md:h-80 h-72 p-2 rounded-xl' alt="class image" /></figure>
             <div className="card-body lg:space-y-1">

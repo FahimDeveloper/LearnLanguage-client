@@ -2,6 +2,7 @@ import { FaUsers, FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import useTheme from "../../../../../Hooks/useTheme";
 import { ImSpinner3 } from "react-icons/im";
 import { Slide, Zoom } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 
 const PopulerInstructor = ({ instructors, loading }) => {
     const { isDarkMode } = useTheme();
@@ -21,7 +22,7 @@ const PopulerInstructor = ({ instructors, loading }) => {
                                             <figure className="xl:w-2/5 lg:w-1/3 md:w-full sm:w-2/5 w-full"><img src={instructor.image} className="sm:w-96 w-full object-cover sm:h-72 h-96 rounded-s-xl" alt="Movie" /></figure>
                                             <div className="card-body xl:w-3/5 lg:w-2/3 md:w-full sm:w-3/5 w-full">
                                                 <Zoom><h2 className="text-3xl font-medium">{instructor.userName}</h2></Zoom>
-                                                <p className="text-sm">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore sint maxime eum temporibus voluptates cumque aliquid sunt nihil eos blanditiis.</p>
+                                                <p className="text-sm">{instructor.description}</p>
                                                 <div className="flex justify-between text-sm xl:text-base">
                                                     <div className="flex gap-2">
                                                         <FaUsers className="text-2xl" />
@@ -45,7 +46,7 @@ const PopulerInstructor = ({ instructors, loading }) => {
                         </div>
                 }
                 <div className="text-center">
-                    <button className="btn btn-primary px-10">sell all instructor</button>
+                    <Link to="/instructors"><button className="btn btn-primary px-10">sell all instructor</button></Link>
                 </div>
             </div>
         </div>

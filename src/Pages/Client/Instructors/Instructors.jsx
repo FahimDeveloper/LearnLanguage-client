@@ -24,24 +24,24 @@ const Instructors = () => {
                 <h2 className='titleStyle'>all instructors</h2>
                 <div className='grid grid-cols-4 gap-5'>
                     {
-                        instructors.map(course => {
+                        instructors.map(instructor => {
                             return (
-                                <div key={course._id} className={`${isDarkMode ? 'bg-stone-800' : 'bg-base-100'} card card-compact bg-base-100 shadow-xl`}>
-                                    <figure><img src={course.image} className="w-full h-96 object-cover" alt="intructor image" /></figure>
+                                <div key={instructor._id} className={`${isDarkMode ? 'bg-stone-800' : 'bg-base-100'} card card-compact bg-base-100 shadow-xl`}>
+                                    <figure><img src={instructor.image} className="w-full h-96 object-cover" alt="intructor image" /></figure>
                                     <div className="card-body">
-                                        <h2 className="card-title">{course.userName}</h2>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde nisi voluptates ex consequuntur veniam nihil?</p>
+                                        <h2 className="card-title">{instructor.userName}</h2>
+                                        <p>{instructor.description}</p>
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-2 text-lg">
-                                                <FaUsers className="text-3xl" />
-                                                {course.totalStudents}
+                                                <FaUsers className="text-2xl" />
+                                                {instructor.totalStudents}
                                             </div>
-                                            <div className="text-lg font-medium">
-                                                <p>Available course :  {course.availableCourse}</p>
+                                            <div className="font-medium">
+                                                <p>Available course :  {instructor.availableCourse}</p>
                                             </div>
                                         </div>
                                         <div className="card-actions justify-end">
-                                            <button className="btn btn-primary">see all course</button>
+                                            <button className="btn btn-primary">see all instructor</button>
                                         </div>
                                     </div>
                                 </div>
