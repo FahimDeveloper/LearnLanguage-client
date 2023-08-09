@@ -11,7 +11,7 @@ const Blogs = () => {
         return <Loader />
     }
     return (
-        <div className={`${isDarkMode ? "bg-stone-950" : "bg-base-100"} py-10`}>
+        <div className={`${isDarkMode ? "bg-stone-950 text-base-100" : "bg-base-100"} py-10`}>
             <div className="container mx-auto space-y-10">
                 <h2 className="titleStyle">all blogs</h2>
                 <div className="grid grid-cols-4 gap-5">
