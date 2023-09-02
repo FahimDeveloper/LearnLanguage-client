@@ -25,7 +25,7 @@ const BannerSection = () => {
                     }} modules={[Autoplay, Pagination]}
                     className="mySwiper">
                     <SwiperSlide>
-                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px] min-h-screen">
+                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px]">
                             <div className="md:space-y-5 space-y-2 xl:col-span-3 lg:order-1 order-2">
                                 <h3 className="font-semibold lg:text-3xl md:text-2xl text-xl">Explore, Connect, and Thrive with Languages!</h3>
                                 <p className="md:tracking-wider tracking-wide text-sm md:text-base">
@@ -39,7 +39,7 @@ const BannerSection = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px] min-h-screen">
+                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px]">
                             <div className="md:space-y-5 space-y-2 xl:col-span-3 lg:order-1 order-2">
                                 <h3 className="font-semibold lg:text-3xl md:text-2xl text-xl">Master Communication in Any Language</h3>
                                 <p className="md:tracking-wider tracking-wide text-sm md:text-base">
@@ -48,12 +48,12 @@ const BannerSection = () => {
                                 <button className="btn btn-warning">more about us</button>
                             </div>
                             <div className="xl:col-span-4 lg:order-2 order-1">
-                                <Lottie animationData={animation2} loop={true} className="lg:w-3/4 w-full mx-auto" />
+                                <Lottie animationData={animation2} loop={true} className="w-2/3 mx-auto" />
                             </div>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px] min-h-screen">
+                        <div className="grid xl:grid-cols-7 lg:grid-cols-2 items-center lg:min-h-[800px]">
                             <div className="md:space-y-5 space-y-2 xl:col-span-3 lg:order-1 order-2">
                                 <h3 className="font-semibold lg:text-3xl md:text-2xl text-xl">Discover the Beauty of Multilingualism</h3>
                                 <p className="md:tracking-wider tracking-wide text-sm md:text-base">
@@ -62,7 +62,7 @@ const BannerSection = () => {
                                 <button className="btn btn-warning">Let's start Learning</button>
                             </div>
                             <div className="xl:col-span-4 lg:order-2 order-1">
-                                <Lottie animationData={animation3} loop={true} className="lg:w-4/6 w-full mx-auto" />
+                                <Lottie animationData={animation3} loop={true} className="w-2/3 mx-auto" />
                             </div>
                         </div>
                     </SwiperSlide>

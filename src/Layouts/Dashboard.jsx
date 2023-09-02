@@ -65,7 +65,7 @@ const Dashboard = () => {
                             <div className='space-y-1'>
                                 <Link to="/" className='disActive'><FaHome /> Home</Link>
                                 <Link to="/instructors" className='disActive'><FaUserGraduate /> Instructors</Link>
-                                <Link to="/allClasses" className='disActive'> <IoBookSharp /> Classes</Link >
+                                <Link to="/courses" className='disActive'> <IoBookSharp /> All courses</Link >
                             </div >
                         </div >
                     </div >
